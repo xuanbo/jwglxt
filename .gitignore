@@ -1,0 +1,12 @@
+#   ignore idea
+.idea
+*.iml
+
+# ignore eclipse
+.project
+.classpath
+.settings
+.metadata
+
+# ignore maven module
+/target

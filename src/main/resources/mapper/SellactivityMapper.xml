@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="f4.web.dao.SellactivityDao">
+
+    <resultMap id="BaseResultMap" type="sellactivity">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="start_time" property="startTime" jdbcType="DATE"/>
+        <result column="state" property="state" jdbcType="VARCHAR"/>
+        <result column="end_time" property="endTime" jdbcType="DATE"/>
+        <result column="type" property="type" jdbcType="VARCHAR"/>
+        <result column="budget_cost" property="budgetCost" jdbcType="DOUBLE"/>
+        <result column="actual_cost" property="actualCost" jdbcType="DOUBLE"/>
+        <result column="reaction" property="reaction" jdbcType="VARCHAR"/>
+        <result column="expect_student_num" property="expectStudentNum" jdbcType="INTEGER"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, name, start_time, state, end_time, type, budget_cost, actual_cost, reaction,
+        expect_student_num, description
+    </sql>
+
+</mapper>

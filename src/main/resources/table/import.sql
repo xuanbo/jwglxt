@@ -149,7 +149,7 @@ CREATE TABLE `evaluate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) NOT NULL,
   `lesson_name` varchar(50) NOT NULL,
-  `tearch_name` varchar(50) NOT NULL,
+  `teacher_name` varchar(50) NOT NULL,
   `time` date NOT NULL,
   `content` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
@@ -266,7 +266,7 @@ CREATE TABLE `score` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
   `lesson_name` varchar(50) NOT NULL,
-  `socre` double(11,0) NOT NULL,
+  `score` double(11,0) NOT NULL,
   `time` date NOT NULL,
   `content` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
@@ -386,7 +386,7 @@ CREATE TABLE `teacher` (
   `sex` tinyint(2) NOT NULL,
   `phone` varchar(11) NOT NULL,
   `qq` varchar(20) NOT NULL,
-  `hrie_time` date NOT NULL,
+  `hire_time` date NOT NULL,
   `role_id` int(11) NOT NULL,
   `province` varchar(20) NOT NULL,
   `idcard` int(20) NOT NULL,

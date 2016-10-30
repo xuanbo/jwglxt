@@ -11,7 +11,7 @@ public class Evaluate implements Serializable {
 
     private String lessonName;
 
-    private String tearchName;
+    private String teacherName;
 
     private Date time;
 
@@ -41,12 +41,12 @@ public class Evaluate implements Serializable {
         this.lessonName = lessonName == null ? null : lessonName.trim();
     }
 
-    public String getTearchName() {
-        return tearchName;
+    public String getTeacherName() {
+        return teacherName;
     }
 
-    public void setTearchName(String tearchName) {
-        this.tearchName = tearchName == null ? null : tearchName.trim();
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 
     public Date getTime() {

@@ -11,7 +11,7 @@ public class Score implements Serializable {
 
     private String lessonName;
 
-    private Double socre;
+    private Double score;
 
     private Date time;
 
@@ -41,12 +41,12 @@ public class Score implements Serializable {
         this.lessonName = lessonName == null ? null : lessonName.trim();
     }
 
-    public Double getSocre() {
-        return socre;
+    public Double getScore() {
+        return score;
     }
 
-    public void setSocre(Double socre) {
-        this.socre = socre;
+    public void setScore(Double score) {
+        this.score = score;
     }
 
     public Date getTime() {

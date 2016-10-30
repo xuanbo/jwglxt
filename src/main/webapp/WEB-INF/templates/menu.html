@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>menu</title>
+</head>
+<body>
+    <ul>
+        <li><a th:href="@{'/menu/menus?lang=zh'}">中文</a></li>
+        <li><a th:href="@{'/menu/menus?lang=en'}">English</a></li>
+    </ul>
+    <p th:text="#{home.welcome}">你好，世界</p>
+</body>
+</html>

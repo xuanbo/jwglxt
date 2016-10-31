@@ -4,6 +4,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import f4.web.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import tk.mybatis.mapper.common.Mapper;
 
 import java.io.Serializable;
@@ -12,6 +14,7 @@ import java.util.List;
 /**
  * Created by xuan on 16-10-28.
  */
+@Service
 public abstract class BaseServiceImpl<T, ID extends Serializable> implements BaseService<T, ID> {
 
     @Autowired

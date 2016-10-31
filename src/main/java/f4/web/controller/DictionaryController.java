@@ -19,6 +19,17 @@ public class DictionaryController {
 	@Autowired
     private DictionaryService dictionaryService;
 
+
+	/**
+	 * 查询所有记录
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/dictionarys", method = RequestMethod.GET)
+	public @ResponseBody List<Dictionary> selectAll() {
+		return dictionaryService.selectAll();
+	}
+
     /**
      * 根据id查询
      *
@@ -26,12 +37,23 @@ public class DictionaryController {
      * @return
      */
     @RequestMapping(value = "/dictionary/{id}", method = RequestMethod.GET)
-    public @ResponseBody List<Dictionary> selectRoleById(@PathVariable Integer id) {
+    public @ResponseBody Dictionary selectById(@PathVariable Integer id) {
     	Dictionary dictionary = new Dictionary();
     	dictionary.setId(id);
-        return dictionaryService.select(dictionary);
+        return dictionaryService.selectOne(dictionary);
     }
     
+    /**
+     * 查询记录
+     * 
+     * @param dictionary
+     * @return
+     */
+    @RequestMapping(value = "/dictionary", method = RequestMethod.GET)
+    public @ResponseBody Dictionary selectOne(@RequestBody Dictionary dictionary) {
+    	return dictionaryService.selectOne(dictionary);
+    }
+
     /**
      * 添加
      *
@@ -39,10 +61,10 @@ public class DictionaryController {
      * @return
      */
     @RequestMapping(value = "/dictionary", method = RequestMethod.POST)
-    public @ResponseBody int addRole(@RequestBody Dictionary dictionary) {
+    public @ResponseBody int insert(@RequestBody Dictionary dictionary) {
         return dictionaryService.insert(dictionary);
     }
-    
+
     /**
      * 修改
      *
@@ -50,10 +72,10 @@ public class DictionaryController {
      * @return
      */
     @RequestMapping(value = "/dictionary", method = RequestMethod.PUT)
-    public @ResponseBody int updateRoleById(@RequestBody Dictionary dictionary) {
+    public @ResponseBody int update(@RequestBody Dictionary dictionary) {
         return dictionaryService.update(dictionary);
     }
-    
+
     /**
      * 删除
      *
@@ -61,7 +83,7 @@ public class DictionaryController {
      * @return
      */
     @RequestMapping(value = "/dictionary/{id}", method = RequestMethod.DELETE)
-    public @ResponseBody int deleteRoleById(@PathVariable Integer id) {
+    public @ResponseBody int deleteById(@PathVariable Integer id) {
         return dictionaryService.deleteById(id);
     }
 }

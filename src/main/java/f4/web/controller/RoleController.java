@@ -24,6 +24,17 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
 
+
+	/**
+	 * 查询所有记录
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/roles", method = RequestMethod.GET)
+	public @ResponseBody List<Role> selectAll() {
+		return roleService.selectAll();
+	}
+
     /**
      * 根据id查询
      *
@@ -31,10 +42,21 @@ public class RoleController {
      * @return
      */
     @RequestMapping(value = "/role/{id}", method = RequestMethod.GET)
-    public @ResponseBody List<Role> selectRoleById(@PathVariable Integer id) {
-        Role role = new Role();
-        role.setId(id);
-        return roleService.select(role);
+    public @ResponseBody Role selectById(@PathVariable Integer id) {
+    	Role role = new Role();
+    	role.setId(id);
+        return roleService.selectOne(role);
+    }
+    
+    /**
+     * 查询记录
+     * 
+     * @param role
+     * @return
+     */
+    @RequestMapping(value = "/role", method = RequestMethod.GET)
+    public @ResponseBody Role selectOne(@RequestBody Role role) {
+    	return roleService.selectOne(role);
     }
 
     /**
@@ -44,7 +66,7 @@ public class RoleController {
      * @return
      */
     @RequestMapping(value = "/role", method = RequestMethod.POST)
-    public @ResponseBody int addRole(@RequestBody Role role) {
+    public @ResponseBody int insert(@RequestBody Role role) {
         return roleService.insert(role);
     }
 
@@ -55,7 +77,7 @@ public class RoleController {
      * @return
      */
     @RequestMapping(value = "/role", method = RequestMethod.PUT)
-    public @ResponseBody int updateRoleById(@RequestBody Role role) {
+    public @ResponseBody int update(@RequestBody Role role) {
         return roleService.update(role);
     }
 
@@ -66,7 +88,7 @@ public class RoleController {
      * @return
      */
     @RequestMapping(value = "/role/{id}", method = RequestMethod.DELETE)
-    public @ResponseBody int deleteRoleById(@PathVariable Integer id) {
+    public @ResponseBody int deleteById(@PathVariable Integer id) {
         return roleService.deleteById(id);
     }
 }

@@ -19,6 +19,17 @@ public class EvaluateController {
 	@Autowired
     private EvaluateService evaluateService;
 
+
+	/**
+	 * 查询所有记录
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/evaluates", method = RequestMethod.GET)
+	public @ResponseBody List<Evaluate> selectAll() {
+		return evaluateService.selectAll();
+	}
+
     /**
      * 根据id查询
      *
@@ -26,12 +37,23 @@ public class EvaluateController {
      * @return
      */
     @RequestMapping(value = "/evaluate/{id}", method = RequestMethod.GET)
-    public @ResponseBody List<Evaluate> selectRoleById(@PathVariable Integer id) {
+    public @ResponseBody Evaluate selectById(@PathVariable Integer id) {
     	Evaluate evaluate = new Evaluate();
     	evaluate.setId(id);
-        return evaluateService.select(evaluate);
+        return evaluateService.selectOne(evaluate);
     }
     
+    /**
+     * 查询记录
+     * 
+     * @param evaluate
+     * @return
+     */
+    @RequestMapping(value = "/evaluate", method = RequestMethod.GET)
+    public @ResponseBody Evaluate selectOne(@RequestBody Evaluate evaluate) {
+    	return evaluateService.selectOne(evaluate);
+    }
+
     /**
      * 添加
      *
@@ -39,10 +61,10 @@ public class EvaluateController {
      * @return
      */
     @RequestMapping(value = "/evaluate", method = RequestMethod.POST)
-    public @ResponseBody int addRole(@RequestBody Evaluate evaluate) {
+    public @ResponseBody int insert(@RequestBody Evaluate evaluate) {
         return evaluateService.insert(evaluate);
     }
-    
+
     /**
      * 修改
      *
@@ -50,10 +72,10 @@ public class EvaluateController {
      * @return
      */
     @RequestMapping(value = "/evaluate", method = RequestMethod.PUT)
-    public @ResponseBody int updateRoleById(@RequestBody Evaluate evaluate) {
+    public @ResponseBody int update(@RequestBody Evaluate evaluate) {
         return evaluateService.update(evaluate);
     }
-    
+
     /**
      * 删除
      *
@@ -61,7 +83,7 @@ public class EvaluateController {
      * @return
      */
     @RequestMapping(value = "/evaluate/{id}", method = RequestMethod.DELETE)
-    public @ResponseBody int deleteRoleById(@PathVariable Integer id) {
+    public @ResponseBody int deleteById(@PathVariable Integer id) {
         return evaluateService.deleteById(id);
     }
 }

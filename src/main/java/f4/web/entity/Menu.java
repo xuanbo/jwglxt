@@ -1,5 +1,6 @@
 package f4.web.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -7,13 +8,26 @@ import java.io.Serializable;
  *
  * Created by xuan on 16-10-28.
  */
+@Table(name = "menu")
 public class Menu implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column
     private Integer parentId;
+
+    @Column
     private String menuName;
+
+    @Column
     private String icon;
+
+    @Column
     private String url;
+
+    @Column
     private String level;
 
     public Integer getId() {

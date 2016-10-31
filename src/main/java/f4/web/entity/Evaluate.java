@@ -1,20 +1,30 @@
 package f4.web.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
+@Table(name = "evaluate")
 public class Evaluate implements Serializable {
 
+    @Id
     private Integer id;
 
+    @Column
     private String title;
 
+    @Column
     private String lessonName;
 
+    @Column
     private String teacherName;
 
+    @Column
     private Date time;
 
+    @Column
     private String content;
 
     public Integer getId() {

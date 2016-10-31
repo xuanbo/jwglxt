@@ -15,11 +15,13 @@ import f4.web.service.EvaluateService;
 
 @Controller
 public class EvaluateController {
+
 	@Autowired
     private EvaluateService evaluateService;
 
     /**
      * 根据id查询
+     *
      * @param id
      * @return
      */
@@ -32,6 +34,7 @@ public class EvaluateController {
     
     /**
      * 添加
+     *
      * @param evaluate
      * @return
      */
@@ -42,6 +45,7 @@ public class EvaluateController {
     
     /**
      * 修改
+     *
      * @param evaluate
      * @return
      */
@@ -52,6 +56,7 @@ public class EvaluateController {
     
     /**
      * 删除
+     *
      * @param id
      * @return
      */

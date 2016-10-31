@@ -15,11 +15,13 @@ import f4.web.service.CommunicationService;
 
 @Controller
 public class CommunicationController {
+
 	@Autowired
     private CommunicationService communicationService;
 
     /**
      * 根据id查询
+     *
      * @param id
      * @return
      */
@@ -32,6 +34,7 @@ public class CommunicationController {
     
     /**
      * 添加
+     *
      * @param communication
      * @return
      */
@@ -42,6 +45,7 @@ public class CommunicationController {
     
     /**
      * 修改
+     *
      * @param communication
      * @return
      */
@@ -52,6 +56,7 @@ public class CommunicationController {
     
     /**
      * 删除
+     *
      * @param id
      * @return
      */

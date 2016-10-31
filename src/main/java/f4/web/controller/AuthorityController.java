@@ -15,11 +15,13 @@ import f4.web.service.AuthorityService;
 
 @Controller
 public class AuthorityController {
+
 	@Autowired
     private AuthorityService authorityService;
 
     /**
      * 根据id查询
+     *
      * @param id
      * @return
      */
@@ -32,6 +34,7 @@ public class AuthorityController {
     
     /**
      * 添加
+     *
      * @param authority
      * @return
      */
@@ -42,6 +45,7 @@ public class AuthorityController {
     
     /**
      * 修改
+     *
      * @param authority
      * @return
      */
@@ -52,6 +56,7 @@ public class AuthorityController {
     
     /**
      * 删除
+     *
      * @param id
      * @return
      */

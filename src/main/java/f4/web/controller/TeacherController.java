@@ -15,11 +15,13 @@ import f4.web.service.TeacherService;
 
 @Controller
 public class TeacherController {
+
 	@Autowired
     private TeacherService teacherService;
 
     /**
      * 根据id查询
+     *
      * @param id
      * @return
      */
@@ -32,6 +34,7 @@ public class TeacherController {
     
     /**
      * 添加
+     *
      * @param teacher
      * @return
      */
@@ -42,6 +45,7 @@ public class TeacherController {
     
     /**
      * 修改
+     *
      * @param teacher
      * @return
      */
@@ -52,6 +56,7 @@ public class TeacherController {
     
     /**
      * 删除
+     *
      * @param id
      * @return
      */

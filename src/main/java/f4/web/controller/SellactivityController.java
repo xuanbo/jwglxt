@@ -15,6 +15,7 @@ import f4.web.service.SellactivityService;
 
 @Controller
 public class SellactivityController {
+
 	@Autowired
     private SellactivityService sellactivityService;
 

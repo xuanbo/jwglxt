@@ -15,11 +15,13 @@ import f4.web.service.StaffService;
 
 @Controller
 public class StaffController {
+
 	@Autowired
     private StaffService staffService;
 
     /**
      * 根据id查询
+     *
      * @param id
      * @return
      */
@@ -32,6 +34,7 @@ public class StaffController {
     
     /**
      * 添加
+     *
      * @param staff
      * @return
      */
@@ -42,6 +45,7 @@ public class StaffController {
     
     /**
      * 修改
+     *
      * @param staff
      * @return
      */
@@ -52,6 +56,7 @@ public class StaffController {
     
     /**
      * 删除
+     *
      * @param id
      * @return
      */

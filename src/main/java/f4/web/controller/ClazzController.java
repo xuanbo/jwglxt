@@ -15,11 +15,13 @@ import f4.web.service.ClazzService;
 
 @Controller
 public class ClazzController {
+
 	@Autowired
     private ClazzService clazzService;
 
     /**
      * 根据id查询
+     *
      * @param id
      * @return
      */
@@ -32,6 +34,7 @@ public class ClazzController {
     
     /**
      * 添加
+     *
      * @param clazz
      * @return
      */
@@ -42,6 +45,7 @@ public class ClazzController {
     
     /**
      * 修改
+     *
      * @param clazz
      * @return
      */
@@ -52,6 +56,7 @@ public class ClazzController {
     
     /**
      * 删除
+     *
      * @param id
      * @return
      */

@@ -1,4 +1,5 @@
 package f4.web.controller;
+
 import f4.web.entity.Role;
 import f4.web.service.RoleService;
 
@@ -25,6 +26,7 @@ public class RoleController {
 
     /**
      * 根据id查询
+     *
      * @param id
      * @return
      */
@@ -34,9 +36,10 @@ public class RoleController {
         role.setId(id);
         return roleService.select(role);
     }
-    
+
     /**
      * 添加
+     *
      * @param role
      * @return
      */
@@ -44,9 +47,10 @@ public class RoleController {
     public @ResponseBody int addRole(@RequestBody Role role) {
         return roleService.insert(role);
     }
-    
+
     /**
      * 修改
+     *
      * @param role
      * @return
      */
@@ -54,9 +58,10 @@ public class RoleController {
     public @ResponseBody int updateRoleById(@RequestBody Role role) {
         return roleService.update(role);
     }
-    
+
     /**
      * 删除
+     *
      * @param id
      * @return
      */

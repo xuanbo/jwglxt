@@ -15,11 +15,13 @@ import f4.web.service.ScheduleService;
 
 @Controller
 public class ScheduleController {
+
 	@Autowired
     private ScheduleService scheduleService;
 
     /**
      * 根据id查询
+     *
      * @param id
      * @return
      */
@@ -32,6 +34,7 @@ public class ScheduleController {
     
     /**
      * 添加
+     *
      * @param schedule
      * @return
      */
@@ -42,6 +45,7 @@ public class ScheduleController {
     
     /**
      * 修改
+     *
      * @param schedule
      * @return
      */
@@ -52,6 +56,7 @@ public class ScheduleController {
     
     /**
      * 删除
+     *
      * @param id
      * @return
      */

@@ -15,11 +15,13 @@ import f4.web.service.DictionaryService;
 
 @Controller
 public class DictionaryController {
+
 	@Autowired
     private DictionaryService dictionaryService;
 
     /**
      * 根据id查询
+     *
      * @param id
      * @return
      */
@@ -32,6 +34,7 @@ public class DictionaryController {
     
     /**
      * 添加
+     *
      * @param dictionary
      * @return
      */
@@ -42,6 +45,7 @@ public class DictionaryController {
     
     /**
      * 修改
+     *
      * @param dictionary
      * @return
      */
@@ -52,6 +56,7 @@ public class DictionaryController {
     
     /**
      * 删除
+     *
      * @param id
      * @return
      */

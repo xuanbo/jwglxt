@@ -1,30 +1,44 @@
 package f4.web.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+@Table(name = "sellactivity")
 public class Sellactivity implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column
     private String name;
 
+    @Column
     private Date startTime;
 
+    @Column
     private String state;
 
+    @Column
     private Date endTime;
 
+    @Column
     private String type;
 
+    @Column
     private Double budgetCost;
 
+    @Column
     private Double actualCost;
 
+    @Column
     private String reaction;
 
+    @Column
     private Integer expectStudentNum;
 
+    @Column
     private String description;
 
     public Integer getId() {

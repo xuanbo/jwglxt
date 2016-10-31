@@ -15,11 +15,13 @@ import f4.web.service.AuditionService;
 
 @Controller
 public class AuditionController {
+
 	@Autowired
     private AuditionService auditionService;
 
     /**
      * 根据id查询
+     *
      * @param id
      * @return
      */
@@ -32,6 +34,7 @@ public class AuditionController {
     
     /**
      * 添加
+     *
      * @param audition
      * @return
      */
@@ -42,6 +45,7 @@ public class AuditionController {
     
     /**
      * 修改
+     *
      * @param audition
      * @return
      */
@@ -52,6 +56,7 @@ public class AuditionController {
     
     /**
      * 删除
+     *
      * @param id
      * @return
      */

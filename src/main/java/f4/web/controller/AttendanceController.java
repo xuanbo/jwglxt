@@ -21,6 +21,7 @@ public class AttendanceController {
 
     /**
      * 根据id查询
+     *
      * @param id
      * @return
      */
@@ -30,9 +31,10 @@ public class AttendanceController {
     	attendance.setId(id);
         return attendanceService.select(attendance);
     }
-    
+
     /**
      * 添加
+     *
      * @param attendance
      * @return
      */
@@ -40,9 +42,10 @@ public class AttendanceController {
     public @ResponseBody int addRole(@RequestBody Attendance attendance) {
         return attendanceService.insert(attendance);
     }
-    
+
     /**
      * 修改
+     *
      * @param attendance
      * @return
      */
@@ -50,9 +53,10 @@ public class AttendanceController {
     public @ResponseBody int updateRoleById(@RequestBody Attendance attendance) {
         return attendanceService.update(attendance);
     }
-    
+
     /**
      * 删除
+     *
      * @param id
      * @return
      */

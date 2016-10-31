@@ -1,25 +1,37 @@
 package f4.web.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Table(name = "schedule")
 public class Schedule implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column
     private String name;
 
+    @Column
     private String monday;
 
+    @Column
     private String tuesday;
 
+    @Column
     private String wednesday;
 
+    @Column
     private String thursday;
 
+    @Column
     private String friday;
 
+    @Column
     private String saturday;
 
+    @Column
     private String sunday;
 
     public Integer getId() {

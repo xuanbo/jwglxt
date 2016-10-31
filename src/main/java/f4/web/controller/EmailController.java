@@ -15,11 +15,13 @@ import f4.web.service.EmailService;
 
 @Controller
 public class EmailController {
+
 	@Autowired
     private EmailService emailService;
 
     /**
      * 根据id查询
+     *
      * @param id
      * @return
      */
@@ -32,6 +34,7 @@ public class EmailController {
     
     /**
      * 添加
+     *
      * @param email
      * @return
      */
@@ -42,6 +45,7 @@ public class EmailController {
     
     /**
      * 修改
+     *
      * @param email
      * @return
      */
@@ -52,6 +56,7 @@ public class EmailController {
     
     /**
      * 删除
+     *
      * @param id
      * @return
      */

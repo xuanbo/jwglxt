@@ -1,17 +1,25 @@
 package f4.web.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Table(name = "classroom")
 public class Classroom implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column
     private String name;
 
+    @Column
     private Integer number;
 
+    @Column
     private String deviceInfo;
 
+    @Column
     private String remark;
 
     public Integer getId() {

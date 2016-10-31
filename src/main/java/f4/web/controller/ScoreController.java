@@ -15,11 +15,13 @@ import f4.web.service.ScoreService;
 
 @Controller
 public class ScoreController {
+
 	@Autowired
     private ScoreService scoreService;
 
     /**
      * 根据id查询
+     *
      * @param id
      * @return
      */
@@ -32,6 +34,7 @@ public class ScoreController {
     
     /**
      * 添加
+     *
      * @param score
      * @return
      */
@@ -42,6 +45,7 @@ public class ScoreController {
     
     /**
      * 修改
+     *
      * @param score
      * @return
      */
@@ -52,6 +56,7 @@ public class ScoreController {
     
     /**
      * 删除
+     *
      * @param id
      * @return
      */

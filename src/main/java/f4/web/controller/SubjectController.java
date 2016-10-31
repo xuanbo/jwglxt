@@ -15,11 +15,13 @@ import f4.web.service.SubjectService;
 
 @Controller
 public class SubjectController {
+
 	@Autowired
     private SubjectService subjectService;
 
     /**
      * 根据id查询
+     *
      * @param id
      * @return
      */
@@ -32,6 +34,7 @@ public class SubjectController {
     
     /**
      * 添加
+     *
      * @param subject
      * @return
      */
@@ -52,6 +55,7 @@ public class SubjectController {
     
     /**
      * 删除
+     *
      * @param id
      * @return
      */

@@ -15,11 +15,13 @@ import f4.web.service.TemplateService;
 
 @Controller
 public class TemplateController {
+
 	@Autowired
     private TemplateService templateService;
 
     /**
      * 根据id查询
+     *
      * @param id
      * @return
      */
@@ -42,6 +44,7 @@ public class TemplateController {
     
     /**
      * 修改
+     *
      * @param template
      * @return
      */
@@ -52,6 +55,7 @@ public class TemplateController {
     
     /**
      * 删除
+     *
      * @param id
      * @return
      */

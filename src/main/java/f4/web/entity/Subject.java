@@ -1,17 +1,25 @@
 package f4.web.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Table(name = "subject")
 public class Subject implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column
     private String name;
 
+    @Column
     private Double cost;
 
+    @Column
     private Integer classHour;
 
+    @Column
     private String description;
 
     public Integer getId() {

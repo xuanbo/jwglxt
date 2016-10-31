@@ -2,6 +2,7 @@ package f4.web;
 
 import f4.web.config.AppConfig;
 import f4.web.dao.MenuDao;
+import f4.web.entity.Menu;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,4 +26,14 @@ public class MenuDaoTest {
     public void selectAll() {
         menuDao.selectAll().forEach(menu -> log.debug(menu));
     }
+
+    public void insert() {
+        Menu menu = new Menu();
+        menu.setParentId(1);
+        menu.setMenuName("Hello");
+        menu.setLevel("1.3");
+        menuDao.insert(menu);
+        System.out.println(menu.getId());
+    }
+
 }

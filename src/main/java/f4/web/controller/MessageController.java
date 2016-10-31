@@ -15,11 +15,13 @@ import f4.web.service.MessageService;
 
 @Controller
 public class MessageController {
+
 	@Autowired
     private MessageService messageService;
 
     /**
      * 根据id查询
+     *
      * @param id
      * @return
      */
@@ -32,6 +34,7 @@ public class MessageController {
     
     /**
      * 添加
+     *
      * @param message
      * @return
      */
@@ -42,6 +45,7 @@ public class MessageController {
     
     /**
      * 修改
+     *
      * @param message
      * @return
      */
@@ -52,6 +56,7 @@ public class MessageController {
     
     /**
      * 删除
+     *
      * @param id
      * @return
      */

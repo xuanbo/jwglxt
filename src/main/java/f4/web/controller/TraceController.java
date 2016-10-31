@@ -15,11 +15,13 @@ import f4.web.service.TraceService;
 
 @Controller
 public class TraceController {
+
 	@Autowired
     private TraceService traceService;
 
     /**
      * 根据id查询
+     *
      * @param id
      * @return
      */
@@ -32,6 +34,7 @@ public class TraceController {
     
     /**
      * 添加
+     *
      * @param trace
      * @return
      */
@@ -42,6 +45,7 @@ public class TraceController {
     
     /**
      * 修改
+     *
      * @param trace
      * @return
      */
@@ -52,6 +56,7 @@ public class TraceController {
     
     /**
      * 删除
+     *
      * @param id
      * @return
      */

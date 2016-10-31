@@ -70,4 +70,14 @@ public interface BaseService<T, ID extends Serializable> {
      */
     PageInfo<T> getByPage(Integer current, Integer size);
 
+    /**
+     * 分页获取信息
+     *
+     * @param t 实体
+     * @param current 每页显示的记录
+     * @param size 分页返回记录信息
+     * @return 分页返回记录信息
+     */
+    PageInfo<T> getByPage(T t, Integer current, Integer size);
+
 }

@@ -68,4 +68,11 @@ public abstract class BaseServiceImpl<T, ID extends Serializable> implements Bas
         PageHelper.startPage(current, size);
         return new PageInfo<T>(mapper.selectAll());
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public PageInfo<T> getByPage(T t, Integer current, Integer size) {
+        PageHelper.startPage(current, size);
+        return new PageInfo<T>(mapper.select(t));
+    }
 }

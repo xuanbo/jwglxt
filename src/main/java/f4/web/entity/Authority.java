@@ -1,17 +1,25 @@
 package f4.web.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Table(name = "authority")
 public class Authority implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column
     private Integer parentId;
 
+    @Column
     private String name;
 
+    @Column
     private String url;
 
+    @Column
     private String remark;
 
     public Integer getId() {

@@ -1,15 +1,22 @@
 package f4.web.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Table(name = "dictionary")
 public class Dictionary implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column
     private String name;
 
+    @Column
     private String type;
 
+    @Column
     private String description;
 
     public Integer getId() {

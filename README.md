@@ -23,3 +23,12 @@
 *   进入`jwglxt`文件夹
 *   输入命令：`mvn clean compile tomcat7:run`，启动服务器
 *   浏览器输入：`http://localhost:8080/`
+
+
+
+## 4.项目成员
+
+*   冯麒麟
+*   瞿毅力
+*   王漩波
+*   谢子曦

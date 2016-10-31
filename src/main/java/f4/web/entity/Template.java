@@ -1,15 +1,22 @@
 package f4.web.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Table(name = "template")
 public class Template implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column
     private String title;
 
+    @Column
     private String content;
 
+    @Column
     private String type;
 
     public Integer getId() {

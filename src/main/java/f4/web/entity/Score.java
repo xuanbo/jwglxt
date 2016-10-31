@@ -1,20 +1,29 @@
 package f4.web.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+@Table(name = "score")
 public class Score implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column
     private Integer studentId;
 
+    @Column
     private String lessonName;
 
+    @Column
     private Double score;
 
+    @Column
     private Date time;
 
+    @Column
     private String content;
 
     public Integer getId() {

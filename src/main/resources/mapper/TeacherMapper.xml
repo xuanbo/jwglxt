@@ -24,7 +24,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, name, age, sex, phone, qq, hrie_time, role_id, province, idcard, birthday, tel,
+        id, name, age, sex, phone, qq, hire_time, role_id, province, idcard, birthday, tel,
         email, address, education, remark, username, password
     </sql>
 

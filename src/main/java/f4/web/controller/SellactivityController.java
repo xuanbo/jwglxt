@@ -19,45 +19,71 @@ public class SellactivityController {
 	@Autowired
     private SellactivityService sellactivityService;
 
+
+	/**
+	 * 查询所有记录
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/sellactivitys", method = RequestMethod.GET)
+	public @ResponseBody List<Sellactivity> selectAll() {
+		return sellactivityService.selectAll();
+	}
+
     /**
      * 根据id查询
+     *
      * @param id
      * @return
      */
     @RequestMapping(value = "/sellactivity/{id}", method = RequestMethod.GET)
-    public @ResponseBody List<Sellactivity> selectRoleById(@PathVariable Integer id) {
+    public @ResponseBody Sellactivity selectById(@PathVariable Integer id) {
     	Sellactivity sellactivity = new Sellactivity();
     	sellactivity.setId(id);
-        return sellactivityService.select(sellactivity);
+        return sellactivityService.selectOne(sellactivity);
     }
     
     /**
+     * 查询记录
+     * 
+     * @param sellactivity
+     * @return
+     */
+    @RequestMapping(value = "/sellactivity", method = RequestMethod.GET)
+    public @ResponseBody Sellactivity selectOne(@RequestBody Sellactivity sellactivity) {
+    	return sellactivityService.selectOne(sellactivity);
+    }
+
+    /**
      * 添加
+     *
      * @param sellactivity
      * @return
      */
     @RequestMapping(value = "/sellactivity", method = RequestMethod.POST)
-    public @ResponseBody int addRole(@RequestBody Sellactivity sellactivity) {
+    public @ResponseBody int insert(@RequestBody Sellactivity sellactivity) {
         return sellactivityService.insert(sellactivity);
     }
-    
+
     /**
      * 修改
+     *
      * @param sellactivity
      * @return
      */
     @RequestMapping(value = "/sellactivity", method = RequestMethod.PUT)
-    public @ResponseBody int updateRoleById(@RequestBody Sellactivity sellactivity) {
+    public @ResponseBody int update(@RequestBody Sellactivity sellactivity) {
         return sellactivityService.update(sellactivity);
     }
-    
+
     /**
      * 删除
+     *
      * @param id
      * @return
      */
     @RequestMapping(value = "/sellactivity/{id}", method = RequestMethod.DELETE)
-    public @ResponseBody int deleteRoleById(@PathVariable Integer id) {
+    public @ResponseBody int deleteById(@PathVariable Integer id) {
         return sellactivityService.deleteById(id);
     }
 }

@@ -19,6 +19,17 @@ public class EmailController {
 	@Autowired
     private EmailService emailService;
 
+
+	/**
+	 * 查询所有记录
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/emails", method = RequestMethod.GET)
+	public @ResponseBody List<Email> selectAll() {
+		return emailService.selectAll();
+	}
+
     /**
      * 根据id查询
      *
@@ -26,12 +37,23 @@ public class EmailController {
      * @return
      */
     @RequestMapping(value = "/email/{id}", method = RequestMethod.GET)
-    public @ResponseBody List<Email> selectRoleById(@PathVariable Integer id) {
+    public @ResponseBody Email selectById(@PathVariable Integer id) {
     	Email email = new Email();
     	email.setId(id);
-        return emailService.select(email);
+        return emailService.selectOne(email);
     }
     
+    /**
+     * 查询记录
+     * 
+     * @param email
+     * @return
+     */
+    @RequestMapping(value = "/email", method = RequestMethod.GET)
+    public @ResponseBody Email selectOne(@RequestBody Email email) {
+    	return emailService.selectOne(email);
+    }
+
     /**
      * 添加
      *
@@ -39,10 +61,10 @@ public class EmailController {
      * @return
      */
     @RequestMapping(value = "/email", method = RequestMethod.POST)
-    public @ResponseBody int addRole(@RequestBody Email email) {
+    public @ResponseBody int insert(@RequestBody Email email) {
         return emailService.insert(email);
     }
-    
+
     /**
      * 修改
      *
@@ -50,10 +72,10 @@ public class EmailController {
      * @return
      */
     @RequestMapping(value = "/email", method = RequestMethod.PUT)
-    public @ResponseBody int updateRoleById(@RequestBody Email email) {
+    public @ResponseBody int update(@RequestBody Email email) {
         return emailService.update(email);
     }
-    
+
     /**
      * 删除
      *
@@ -61,7 +83,7 @@ public class EmailController {
      * @return
      */
     @RequestMapping(value = "/email/{id}", method = RequestMethod.DELETE)
-    public @ResponseBody int deleteRoleById(@PathVariable Integer id) {
+    public @ResponseBody int deleteById(@PathVariable Integer id) {
         return emailService.deleteById(id);
     }
 }

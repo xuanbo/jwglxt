@@ -18,6 +18,16 @@ public class ClassroomController {
 
 	@Autowired
     private ClassroomService classroomService;
+	
+	/**
+	 * 查询所有记录
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/classrooms", method = RequestMethod.GET)
+	public @ResponseBody List<Classroom> selectAll() {
+		return classroomService.selectAll();
+	}
 
     /**
      * 根据id查询
@@ -26,12 +36,23 @@ public class ClassroomController {
      * @return
      */
     @RequestMapping(value = "/classroom/{id}", method = RequestMethod.GET)
-    public @ResponseBody List<Classroom> selectRoleById(@PathVariable Integer id) {
+    public @ResponseBody Classroom selectById(@PathVariable Integer id) {
     	Classroom classroom = new Classroom();
     	classroom.setId(id);
-        return classroomService.select(classroom);
+        return classroomService.selectOne(classroom);
     }
     
+    /**
+     * 查询记录
+     * 
+     * @param classroom
+     * @return
+     */
+    @RequestMapping(value = "/classroom", method = RequestMethod.GET)
+    public @ResponseBody Classroom selectOne(@RequestBody Classroom classroom) {
+    	return classroomService.selectOne(classroom);
+    }
+
     /**
      * 添加
      *
@@ -39,10 +60,10 @@ public class ClassroomController {
      * @return
      */
     @RequestMapping(value = "/classroom", method = RequestMethod.POST)
-    public @ResponseBody int addRole(@RequestBody Classroom classroom) {
+    public @ResponseBody int insert(@RequestBody Classroom classroom) {
         return classroomService.insert(classroom);
     }
-    
+
     /**
      * 修改
      *
@@ -50,10 +71,10 @@ public class ClassroomController {
      * @return
      */
     @RequestMapping(value = "/classroom", method = RequestMethod.PUT)
-    public @ResponseBody int updateRoleById(@RequestBody Classroom classroom) {
+    public @ResponseBody int update(@RequestBody Classroom classroom) {
         return classroomService.update(classroom);
     }
-    
+
     /**
      * 删除
      *
@@ -61,7 +82,7 @@ public class ClassroomController {
      * @return
      */
     @RequestMapping(value = "/classroom/{id}", method = RequestMethod.DELETE)
-    public @ResponseBody int deleteRoleById(@PathVariable Integer id) {
+    public @ResponseBody int deleteById(@PathVariable Integer id) {
         return classroomService.deleteById(id);
     }
 }

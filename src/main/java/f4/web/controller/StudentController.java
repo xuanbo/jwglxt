@@ -19,6 +19,16 @@ public class StudentController {
 	@Autowired
     private StudentService studentService;
 
+	/**
+	 * 查询所有记录
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/students", method = RequestMethod.GET)
+	public @ResponseBody List<Student> selectAll() {
+		return studentService.selectAll();
+	}
+
     /**
      * 根据id查询
      *
@@ -26,12 +36,23 @@ public class StudentController {
      * @return
      */
     @RequestMapping(value = "/student/{id}", method = RequestMethod.GET)
-    public @ResponseBody List<Student> selectRoleById(@PathVariable Integer id) {
+    public @ResponseBody Student selectById(@PathVariable Integer id) {
     	Student student = new Student();
     	student.setId(id);
-        return studentService.select(student);
+        return studentService.selectOne(student);
     }
     
+    /**
+     * 查询记录
+     * 
+     * @param student
+     * @return
+     */
+    @RequestMapping(value = "/student", method = RequestMethod.GET)
+    public @ResponseBody Student selectOne(@RequestBody Student student) {
+    	return studentService.selectOne(student);
+    }
+
     /**
      * 添加
      *
@@ -39,10 +60,10 @@ public class StudentController {
      * @return
      */
     @RequestMapping(value = "/student", method = RequestMethod.POST)
-    public @ResponseBody int addRole(@RequestBody Student student) {
+    public @ResponseBody int insert(@RequestBody Student student) {
         return studentService.insert(student);
     }
-    
+
     /**
      * 修改
      *
@@ -50,10 +71,10 @@ public class StudentController {
      * @return
      */
     @RequestMapping(value = "/student", method = RequestMethod.PUT)
-    public @ResponseBody int updateRoleById(@RequestBody Student student) {
+    public @ResponseBody int update(@RequestBody Student student) {
         return studentService.update(student);
     }
-    
+
     /**
      * 删除
      *
@@ -61,7 +82,7 @@ public class StudentController {
      * @return
      */
     @RequestMapping(value = "/student/{id}", method = RequestMethod.DELETE)
-    public @ResponseBody int deleteRoleById(@PathVariable Integer id) {
+    public @ResponseBody int deleteById(@PathVariable Integer id) {
         return studentService.deleteById(id);
     }
 }

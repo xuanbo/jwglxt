@@ -19,6 +19,16 @@ public class AuditionController {
 	@Autowired
     private AuditionService auditionService;
 
+	/**
+	 * 查询所有记录
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/auditions", method = RequestMethod.GET)
+	public @ResponseBody List<Audition> selectAll() {
+		return auditionService.selectAll();
+	}
+
     /**
      * 根据id查询
      *
@@ -26,12 +36,23 @@ public class AuditionController {
      * @return
      */
     @RequestMapping(value = "/audition/{id}", method = RequestMethod.GET)
-    public @ResponseBody List<Audition> selectRoleById(@PathVariable Integer id) {
+    public @ResponseBody Audition selectById(@PathVariable Integer id) {
     	Audition audition = new Audition();
     	audition.setId(id);
-        return auditionService.select(audition);
+        return auditionService.selectOne(audition);
     }
     
+    /**
+     * 查询记录
+     * 
+     * @param audition
+     * @return
+     */
+    @RequestMapping(value = "/audition", method = RequestMethod.GET)
+    public @ResponseBody Audition selectOne(@RequestBody Audition audition) {
+    	return auditionService.selectOne(audition);
+    }
+
     /**
      * 添加
      *
@@ -39,10 +60,10 @@ public class AuditionController {
      * @return
      */
     @RequestMapping(value = "/audition", method = RequestMethod.POST)
-    public @ResponseBody int addRole(@RequestBody Audition audition) {
+    public @ResponseBody int insert(@RequestBody Audition audition) {
         return auditionService.insert(audition);
     }
-    
+
     /**
      * 修改
      *
@@ -50,10 +71,10 @@ public class AuditionController {
      * @return
      */
     @RequestMapping(value = "/audition", method = RequestMethod.PUT)
-    public @ResponseBody int updateRoleById(@RequestBody Audition audition) {
+    public @ResponseBody int update(@RequestBody Audition audition) {
         return auditionService.update(audition);
     }
-    
+
     /**
      * 删除
      *
@@ -61,7 +82,7 @@ public class AuditionController {
      * @return
      */
     @RequestMapping(value = "/audition/{id}", method = RequestMethod.DELETE)
-    public @ResponseBody int deleteRoleById(@PathVariable Integer id) {
+    public @ResponseBody int deleteById(@PathVariable Integer id) {
         return auditionService.deleteById(id);
     }
 }

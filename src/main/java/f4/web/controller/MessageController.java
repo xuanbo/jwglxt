@@ -19,6 +19,17 @@ public class MessageController {
 	@Autowired
     private MessageService messageService;
 
+
+	/**
+	 * 查询所有记录
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/messages", method = RequestMethod.GET)
+	public @ResponseBody List<Message> selectAll() {
+		return messageService.selectAll();
+	}
+
     /**
      * 根据id查询
      *
@@ -26,12 +37,23 @@ public class MessageController {
      * @return
      */
     @RequestMapping(value = "/message/{id}", method = RequestMethod.GET)
-    public @ResponseBody List<Message> selectRoleById(@PathVariable Integer id) {
+    public @ResponseBody Message selectById(@PathVariable Integer id) {
     	Message message = new Message();
     	message.setId(id);
-        return messageService.select(message);
+        return messageService.selectOne(message);
     }
     
+    /**
+     * 查询记录
+     * 
+     * @param message
+     * @return
+     */
+    @RequestMapping(value = "/message", method = RequestMethod.GET)
+    public @ResponseBody Message selectOne(@RequestBody Message message) {
+    	return messageService.selectOne(message);
+    }
+
     /**
      * 添加
      *
@@ -39,10 +61,10 @@ public class MessageController {
      * @return
      */
     @RequestMapping(value = "/message", method = RequestMethod.POST)
-    public @ResponseBody int addRole(@RequestBody Message message) {
+    public @ResponseBody int insert(@RequestBody Message message) {
         return messageService.insert(message);
     }
-    
+
     /**
      * 修改
      *
@@ -50,10 +72,10 @@ public class MessageController {
      * @return
      */
     @RequestMapping(value = "/message", method = RequestMethod.PUT)
-    public @ResponseBody int updateRoleById(@RequestBody Message message) {
+    public @ResponseBody int update(@RequestBody Message message) {
         return messageService.update(message);
     }
-    
+
     /**
      * 删除
      *
@@ -61,7 +83,7 @@ public class MessageController {
      * @return
      */
     @RequestMapping(value = "/message/{id}", method = RequestMethod.DELETE)
-    public @ResponseBody int deleteRoleById(@PathVariable Integer id) {
+    public @ResponseBody int deleteById(@PathVariable Integer id) {
         return messageService.deleteById(id);
     }
 }

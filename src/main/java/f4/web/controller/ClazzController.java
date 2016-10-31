@@ -19,6 +19,16 @@ public class ClazzController {
 	@Autowired
     private ClazzService clazzService;
 
+	/**
+	 * 查询所有记录
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/clazzs", method = RequestMethod.GET)
+	public @ResponseBody List<Clazz> selectAll() {
+		return clazzService.selectAll();
+	}
+
     /**
      * 根据id查询
      *
@@ -26,12 +36,23 @@ public class ClazzController {
      * @return
      */
     @RequestMapping(value = "/clazz/{id}", method = RequestMethod.GET)
-    public @ResponseBody List<Clazz> selectRoleById(@PathVariable Integer id) {
+    public @ResponseBody Clazz selectById(@PathVariable Integer id) {
     	Clazz clazz = new Clazz();
     	clazz.setId(id);
-        return clazzService.select(clazz);
+        return clazzService.selectOne(clazz);
     }
     
+    /**
+     * 查询记录
+     * 
+     * @param clazz
+     * @return
+     */
+    @RequestMapping(value = "/clazz", method = RequestMethod.GET)
+    public @ResponseBody Clazz selectOne(@RequestBody Clazz clazz) {
+    	return clazzService.selectOne(clazz);
+    }
+
     /**
      * 添加
      *
@@ -39,10 +60,10 @@ public class ClazzController {
      * @return
      */
     @RequestMapping(value = "/clazz", method = RequestMethod.POST)
-    public @ResponseBody int addRole(@RequestBody Clazz clazz) {
+    public @ResponseBody int insert(@RequestBody Clazz clazz) {
         return clazzService.insert(clazz);
     }
-    
+
     /**
      * 修改
      *
@@ -50,10 +71,10 @@ public class ClazzController {
      * @return
      */
     @RequestMapping(value = "/clazz", method = RequestMethod.PUT)
-    public @ResponseBody int updateRoleById(@RequestBody Clazz clazz) {
+    public @ResponseBody int update(@RequestBody Clazz clazz) {
         return clazzService.update(clazz);
     }
-    
+
     /**
      * 删除
      *
@@ -61,7 +82,7 @@ public class ClazzController {
      * @return
      */
     @RequestMapping(value = "/clazz/{id}", method = RequestMethod.DELETE)
-    public @ResponseBody int deleteRoleById(@PathVariable Integer id) {
+    public @ResponseBody int deleteById(@PathVariable Integer id) {
         return clazzService.deleteById(id);
     }
 }

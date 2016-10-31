@@ -10,3 +10,4 @@
 
 # ignore maven module
 /target
+/bin/

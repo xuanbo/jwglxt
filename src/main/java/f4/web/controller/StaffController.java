@@ -19,6 +19,17 @@ public class StaffController {
 	@Autowired
     private StaffService staffService;
 
+
+	/**
+	 * 查询所有记录
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/staffs", method = RequestMethod.GET)
+	public @ResponseBody List<Staff> selectAll() {
+		return staffService.selectAll();
+	}
+
     /**
      * 根据id查询
      *
@@ -26,12 +37,23 @@ public class StaffController {
      * @return
      */
     @RequestMapping(value = "/staff/{id}", method = RequestMethod.GET)
-    public @ResponseBody List<Staff> selectRoleById(@PathVariable Integer id) {
+    public @ResponseBody Staff selectById(@PathVariable Integer id) {
     	Staff staff = new Staff();
     	staff.setId(id);
-        return staffService.select(staff);
+        return staffService.selectOne(staff);
     }
     
+    /**
+     * 查询记录
+     * 
+     * @param staff
+     * @return
+     */
+    @RequestMapping(value = "/staff", method = RequestMethod.GET)
+    public @ResponseBody Staff selectOne(@RequestBody Staff staff) {
+    	return staffService.selectOne(staff);
+    }
+
     /**
      * 添加
      *
@@ -39,10 +61,10 @@ public class StaffController {
      * @return
      */
     @RequestMapping(value = "/staff", method = RequestMethod.POST)
-    public @ResponseBody int addRole(@RequestBody Staff staff) {
+    public @ResponseBody int insert(@RequestBody Staff staff) {
         return staffService.insert(staff);
     }
-    
+
     /**
      * 修改
      *
@@ -50,10 +72,10 @@ public class StaffController {
      * @return
      */
     @RequestMapping(value = "/staff", method = RequestMethod.PUT)
-    public @ResponseBody int updateRoleById(@RequestBody Staff staff) {
+    public @ResponseBody int update(@RequestBody Staff staff) {
         return staffService.update(staff);
     }
-    
+
     /**
      * 删除
      *
@@ -61,7 +83,7 @@ public class StaffController {
      * @return
      */
     @RequestMapping(value = "/staff/{id}", method = RequestMethod.DELETE)
-    public @ResponseBody int deleteRoleById(@PathVariable Integer id) {
+    public @ResponseBody int deleteById(@PathVariable Integer id) {
         return staffService.deleteById(id);
     }
 }

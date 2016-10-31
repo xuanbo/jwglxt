@@ -18,6 +18,16 @@ public class AuthorityController {
 
 	@Autowired
     private AuthorityService authorityService;
+	
+	/**
+	 * 查询所有记录
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/authoritys", method = RequestMethod.GET)
+	public @ResponseBody List<Authority> selectAll() {
+		return authorityService.selectAll();
+	}
 
     /**
      * 根据id查询
@@ -26,12 +36,23 @@ public class AuthorityController {
      * @return
      */
     @RequestMapping(value = "/authority/{id}", method = RequestMethod.GET)
-    public @ResponseBody List<Authority> selectRoleById(@PathVariable Integer id) {
+    public @ResponseBody Authority selectById(@PathVariable Integer id) {
     	Authority authority = new Authority();
     	authority.setId(id);
-        return authorityService.select(authority);
+        return authorityService.selectOne(authority);
     }
     
+    /**
+     * 查询记录
+     * 
+     * @param authority
+     * @return
+     */
+    @RequestMapping(value = "/authority", method = RequestMethod.GET)
+    public @ResponseBody Authority selectOne(@RequestBody Authority authority) {
+    	return authorityService.selectOne(authority);
+    }
+
     /**
      * 添加
      *
@@ -39,10 +60,10 @@ public class AuthorityController {
      * @return
      */
     @RequestMapping(value = "/authority", method = RequestMethod.POST)
-    public @ResponseBody int addRole(@RequestBody Authority authority) {
+    public @ResponseBody int insert(@RequestBody Authority authority) {
         return authorityService.insert(authority);
     }
-    
+
     /**
      * 修改
      *
@@ -50,10 +71,10 @@ public class AuthorityController {
      * @return
      */
     @RequestMapping(value = "/authority", method = RequestMethod.PUT)
-    public @ResponseBody int updateRoleById(@RequestBody Authority authority) {
+    public @ResponseBody int update(@RequestBody Authority authority) {
         return authorityService.update(authority);
     }
-    
+
     /**
      * 删除
      *
@@ -61,7 +82,7 @@ public class AuthorityController {
      * @return
      */
     @RequestMapping(value = "/authority/{id}", method = RequestMethod.DELETE)
-    public @ResponseBody int deleteRoleById(@PathVariable Integer id) {
+    public @ResponseBody int deleteById(@PathVariable Integer id) {
         return authorityService.deleteById(id);
     }
 }

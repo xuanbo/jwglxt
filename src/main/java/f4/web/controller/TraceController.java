@@ -18,6 +18,16 @@ public class TraceController {
 
 	@Autowired
     private TraceService traceService;
+	
+	/**
+	 * 查询所有记录
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/traces", method = RequestMethod.GET)
+	public @ResponseBody List<Trace> selectAll() {
+		return traceService.selectAll();
+	}
 
     /**
      * 根据id查询
@@ -26,12 +36,23 @@ public class TraceController {
      * @return
      */
     @RequestMapping(value = "/trace/{id}", method = RequestMethod.GET)
-    public @ResponseBody List<Trace> selectRoleById(@PathVariable Integer id) {
+    public @ResponseBody Trace selectById(@PathVariable Integer id) {
     	Trace trace = new Trace();
     	trace.setId(id);
-        return traceService.select(trace);
+        return traceService.selectOne(trace);
     }
     
+    /**
+     * 查询记录
+     * 
+     * @param trace
+     * @return
+     */
+    @RequestMapping(value = "/trace", method = RequestMethod.GET)
+    public @ResponseBody Trace selectOne(@RequestBody Trace trace) {
+    	return traceService.selectOne(trace);
+    }
+
     /**
      * 添加
      *
@@ -39,10 +60,10 @@ public class TraceController {
      * @return
      */
     @RequestMapping(value = "/trace", method = RequestMethod.POST)
-    public @ResponseBody int addRole(@RequestBody Trace trace) {
+    public @ResponseBody int insert(@RequestBody Trace trace) {
         return traceService.insert(trace);
     }
-    
+
     /**
      * 修改
      *
@@ -50,10 +71,10 @@ public class TraceController {
      * @return
      */
     @RequestMapping(value = "/trace", method = RequestMethod.PUT)
-    public @ResponseBody int updateRoleById(@RequestBody Trace trace) {
+    public @ResponseBody int update(@RequestBody Trace trace) {
         return traceService.update(trace);
     }
-    
+
     /**
      * 删除
      *
@@ -61,7 +82,7 @@ public class TraceController {
      * @return
      */
     @RequestMapping(value = "/trace/{id}", method = RequestMethod.DELETE)
-    public @ResponseBody int deleteRoleById(@PathVariable Integer id) {
+    public @ResponseBody int deleteById(@PathVariable Integer id) {
         return traceService.deleteById(id);
     }
 }

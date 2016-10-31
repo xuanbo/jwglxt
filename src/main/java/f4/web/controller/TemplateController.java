@@ -19,6 +19,16 @@ public class TemplateController {
 	@Autowired
     private TemplateService templateService;
 
+	/**
+	 * 查询所有记录
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/templates", method = RequestMethod.GET)
+	public @ResponseBody List<Template> selectAll() {
+		return templateService.selectAll();
+	}
+
     /**
      * 根据id查询
      *
@@ -26,22 +36,34 @@ public class TemplateController {
      * @return
      */
     @RequestMapping(value = "/template/{id}", method = RequestMethod.GET)
-    public @ResponseBody List<Template> selectRoleById(@PathVariable Integer id) {
+    public @ResponseBody Template selectById(@PathVariable Integer id) {
     	Template template = new Template();
     	template.setId(id);
-        return templateService.select(template);
+        return templateService.selectOne(template);
     }
     
     /**
+     * 查询记录
+     * 
+     * @param template
+     * @return
+     */
+    @RequestMapping(value = "/template", method = RequestMethod.GET)
+    public @ResponseBody Template selectOne(@RequestBody Template template) {
+    	return templateService.selectOne(template);
+    }
+
+    /**
      * 添加
+     *
      * @param template
      * @return
      */
     @RequestMapping(value = "/template", method = RequestMethod.POST)
-    public @ResponseBody int addRole(@RequestBody Template template) {
+    public @ResponseBody int insert(@RequestBody Template template) {
         return templateService.insert(template);
     }
-    
+
     /**
      * 修改
      *
@@ -49,10 +71,10 @@ public class TemplateController {
      * @return
      */
     @RequestMapping(value = "/template", method = RequestMethod.PUT)
-    public @ResponseBody int updateRoleById(@RequestBody Template template) {
+    public @ResponseBody int update(@RequestBody Template template) {
         return templateService.update(template);
     }
-    
+
     /**
      * 删除
      *
@@ -60,7 +82,7 @@ public class TemplateController {
      * @return
      */
     @RequestMapping(value = "/template/{id}", method = RequestMethod.DELETE)
-    public @ResponseBody int deleteRoleById(@PathVariable Integer id) {
+    public @ResponseBody int deleteById(@PathVariable Integer id) {
         return templateService.deleteById(id);
     }
 }

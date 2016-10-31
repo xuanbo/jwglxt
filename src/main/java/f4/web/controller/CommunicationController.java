@@ -19,6 +19,17 @@ public class CommunicationController {
 	@Autowired
     private CommunicationService communicationService;
 
+
+	/**
+	 * 查询所有记录
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/communications", method = RequestMethod.GET)
+	public @ResponseBody List<Communication> selectAll() {
+		return communicationService.selectAll();
+	}
+
     /**
      * 根据id查询
      *
@@ -26,12 +37,23 @@ public class CommunicationController {
      * @return
      */
     @RequestMapping(value = "/communication/{id}", method = RequestMethod.GET)
-    public @ResponseBody List<Communication> selectRoleById(@PathVariable Integer id) {
+    public @ResponseBody Communication selectById(@PathVariable Integer id) {
     	Communication communication = new Communication();
     	communication.setId(id);
-        return communicationService.select(communication);
+        return communicationService.selectOne(communication);
     }
     
+    /**
+     * 查询记录
+     * 
+     * @param communication
+     * @return
+     */
+    @RequestMapping(value = "/communication", method = RequestMethod.GET)
+    public @ResponseBody Communication selectOne(@RequestBody Communication communication) {
+    	return communicationService.selectOne(communication);
+    }
+
     /**
      * 添加
      *
@@ -39,10 +61,10 @@ public class CommunicationController {
      * @return
      */
     @RequestMapping(value = "/communication", method = RequestMethod.POST)
-    public @ResponseBody int addRole(@RequestBody Communication communication) {
+    public @ResponseBody int insert(@RequestBody Communication communication) {
         return communicationService.insert(communication);
     }
-    
+
     /**
      * 修改
      *
@@ -50,10 +72,10 @@ public class CommunicationController {
      * @return
      */
     @RequestMapping(value = "/communication", method = RequestMethod.PUT)
-    public @ResponseBody int updateRoleById(@RequestBody Communication communication) {
+    public @ResponseBody int update(@RequestBody Communication communication) {
         return communicationService.update(communication);
     }
-    
+
     /**
      * 删除
      *
@@ -61,7 +83,7 @@ public class CommunicationController {
      * @return
      */
     @RequestMapping(value = "/communication/{id}", method = RequestMethod.DELETE)
-    public @ResponseBody int deleteRoleById(@PathVariable Integer id) {
+    public @ResponseBody int deleteById(@PathVariable Integer id) {
         return communicationService.deleteById(id);
     }
 }

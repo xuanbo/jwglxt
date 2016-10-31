@@ -19,6 +19,16 @@ public class SubjectController {
 	@Autowired
     private SubjectService subjectService;
 
+	/**
+	 * 查询所有记录
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/subjects", method = RequestMethod.GET)
+	public @ResponseBody List<Subject> selectAll() {
+		return subjectService.selectAll();
+	}
+
     /**
      * 根据id查询
      *
@@ -26,12 +36,23 @@ public class SubjectController {
      * @return
      */
     @RequestMapping(value = "/subject/{id}", method = RequestMethod.GET)
-    public @ResponseBody List<Subject> selectRoleById(@PathVariable Integer id) {
+    public @ResponseBody Subject selectById(@PathVariable Integer id) {
     	Subject subject = new Subject();
     	subject.setId(id);
-        return subjectService.select(subject);
+        return subjectService.selectOne(subject);
     }
     
+    /**
+     * 查询记录
+     * 
+     * @param subject
+     * @return
+     */
+    @RequestMapping(value = "/subject", method = RequestMethod.GET)
+    public @ResponseBody Subject selectOne(@RequestBody Subject subject) {
+    	return subjectService.selectOne(subject);
+    }
+
     /**
      * 添加
      *
@@ -39,20 +60,21 @@ public class SubjectController {
      * @return
      */
     @RequestMapping(value = "/subject", method = RequestMethod.POST)
-    public @ResponseBody int addRole(@RequestBody Subject subject) {
+    public @ResponseBody int insert(@RequestBody Subject subject) {
         return subjectService.insert(subject);
     }
-    
+
     /**
      * 修改
+     *
      * @param subject
      * @return
      */
     @RequestMapping(value = "/subject", method = RequestMethod.PUT)
-    public @ResponseBody int updateRoleById(@RequestBody Subject subject) {
+    public @ResponseBody int update(@RequestBody Subject subject) {
         return subjectService.update(subject);
     }
-    
+
     /**
      * 删除
      *
@@ -60,7 +82,7 @@ public class SubjectController {
      * @return
      */
     @RequestMapping(value = "/subject/{id}", method = RequestMethod.DELETE)
-    public @ResponseBody int deleteRoleById(@PathVariable Integer id) {
+    public @ResponseBody int deleteById(@PathVariable Integer id) {
         return subjectService.deleteById(id);
     }
 }

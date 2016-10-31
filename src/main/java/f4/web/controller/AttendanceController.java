@@ -18,6 +18,16 @@ public class AttendanceController {
 
 	@Autowired
     private AttendanceService attendanceService;
+	
+	/**
+	 * 查询所有记录
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/attendances", method = RequestMethod.GET)
+	public @ResponseBody List<Attendance> selectAll() {
+		return attendanceService.selectAll();
+	}
 
     /**
      * 根据id查询
@@ -26,10 +36,21 @@ public class AttendanceController {
      * @return
      */
     @RequestMapping(value = "/attendance/{id}", method = RequestMethod.GET)
-    public @ResponseBody List<Attendance> selectRoleById(@PathVariable Integer id) {
+    public @ResponseBody Attendance selectById(@PathVariable Integer id) {
     	Attendance attendance = new Attendance();
     	attendance.setId(id);
-        return attendanceService.select(attendance);
+        return attendanceService.selectOne(attendance);
+    }
+    
+    /**
+     * 查询记录
+     * 
+     * @param attendance
+     * @return
+     */
+    @RequestMapping(value = "/attendance", method = RequestMethod.GET)
+    public @ResponseBody Attendance selectOne(@RequestBody Attendance attendance) {
+    	return attendanceService.selectOne(attendance);
     }
 
     /**
@@ -39,7 +60,7 @@ public class AttendanceController {
      * @return
      */
     @RequestMapping(value = "/attendance", method = RequestMethod.POST)
-    public @ResponseBody int addRole(@RequestBody Attendance attendance) {
+    public @ResponseBody int insert(@RequestBody Attendance attendance) {
         return attendanceService.insert(attendance);
     }
 
@@ -50,7 +71,7 @@ public class AttendanceController {
      * @return
      */
     @RequestMapping(value = "/attendance", method = RequestMethod.PUT)
-    public @ResponseBody int updateRoleById(@RequestBody Attendance attendance) {
+    public @ResponseBody int update(@RequestBody Attendance attendance) {
         return attendanceService.update(attendance);
     }
 
@@ -61,7 +82,7 @@ public class AttendanceController {
      * @return
      */
     @RequestMapping(value = "/attendance/{id}", method = RequestMethod.DELETE)
-    public @ResponseBody int deleteRoleById(@PathVariable Integer id) {
+    public @ResponseBody int deleteById(@PathVariable Integer id) {
         return attendanceService.deleteById(id);
     }
 }

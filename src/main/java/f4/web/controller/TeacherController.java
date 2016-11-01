@@ -19,6 +19,16 @@ public class TeacherController {
 	@Autowired
     private TeacherService teacherService;
 
+	/**
+	 * 查询所有记录
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/teachers", method = RequestMethod.GET)
+	public @ResponseBody List<Teacher> selectAll() {
+		return teacherService.selectAll();
+	}
+
     /**
      * 根据id查询
      *
@@ -26,12 +36,23 @@ public class TeacherController {
      * @return
      */
     @RequestMapping(value = "/teacher/{id}", method = RequestMethod.GET)
-    public @ResponseBody List<Teacher> selectRoleById(@PathVariable Integer id) {
+    public @ResponseBody Teacher selectById(@PathVariable Integer id) {
     	Teacher teacher = new Teacher();
     	teacher.setId(id);
-        return teacherService.select(teacher);
+        return teacherService.selectOne(teacher);
     }
     
+    /**
+     * 查询记录
+     * 
+     * @param teacher
+     * @return
+     */
+    @RequestMapping(value = "/teacher", method = RequestMethod.GET)
+    public @ResponseBody Teacher selectOne(@RequestBody Teacher teacher) {
+    	return teacherService.selectOne(teacher);
+    }
+
     /**
      * 添加
      *
@@ -39,10 +60,10 @@ public class TeacherController {
      * @return
      */
     @RequestMapping(value = "/teacher", method = RequestMethod.POST)
-    public @ResponseBody int addRole(@RequestBody Teacher teacher) {
+    public @ResponseBody int insert(@RequestBody Teacher teacher) {
         return teacherService.insert(teacher);
     }
-    
+
     /**
      * 修改
      *
@@ -50,10 +71,10 @@ public class TeacherController {
      * @return
      */
     @RequestMapping(value = "/teacher", method = RequestMethod.PUT)
-    public @ResponseBody int updateRoleById(@RequestBody Teacher teacher) {
+    public @ResponseBody int update(@RequestBody Teacher teacher) {
         return teacherService.update(teacher);
     }
-    
+
     /**
      * 删除
      *
@@ -61,7 +82,7 @@ public class TeacherController {
      * @return
      */
     @RequestMapping(value = "/teacher/{id}", method = RequestMethod.DELETE)
-    public @ResponseBody int deleteRoleById(@PathVariable Integer id) {
+    public @ResponseBody int deleteById(@PathVariable Integer id) {
         return teacherService.deleteById(id);
     }
 }

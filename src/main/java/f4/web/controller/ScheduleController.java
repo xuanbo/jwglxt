@@ -19,6 +19,16 @@ public class ScheduleController {
 	@Autowired
     private ScheduleService scheduleService;
 
+	/**
+	 * 查询所有记录
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/schedules", method = RequestMethod.GET)
+	public @ResponseBody List<Schedule> selectAll() {
+		return scheduleService.selectAll();
+	}
+
     /**
      * 根据id查询
      *
@@ -26,12 +36,23 @@ public class ScheduleController {
      * @return
      */
     @RequestMapping(value = "/schedule/{id}", method = RequestMethod.GET)
-    public @ResponseBody List<Schedule> selectRoleById(@PathVariable Integer id) {
+    public @ResponseBody Schedule selectById(@PathVariable Integer id) {
     	Schedule schedule = new Schedule();
     	schedule.setId(id);
-        return scheduleService.select(schedule);
+        return scheduleService.selectOne(schedule);
     }
     
+    /**
+     * 查询记录
+     * 
+     * @param schedule
+     * @return
+     */
+    @RequestMapping(value = "/schedule", method = RequestMethod.GET)
+    public @ResponseBody Schedule selectOne(@RequestBody Schedule schedule) {
+    	return scheduleService.selectOne(schedule);
+    }
+
     /**
      * 添加
      *
@@ -39,10 +60,10 @@ public class ScheduleController {
      * @return
      */
     @RequestMapping(value = "/schedule", method = RequestMethod.POST)
-    public @ResponseBody int addRole(@RequestBody Schedule schedule) {
+    public @ResponseBody int insert(@RequestBody Schedule schedule) {
         return scheduleService.insert(schedule);
     }
-    
+
     /**
      * 修改
      *
@@ -50,10 +71,10 @@ public class ScheduleController {
      * @return
      */
     @RequestMapping(value = "/schedule", method = RequestMethod.PUT)
-    public @ResponseBody int updateRoleById(@RequestBody Schedule schedule) {
+    public @ResponseBody int update(@RequestBody Schedule schedule) {
         return scheduleService.update(schedule);
     }
-    
+
     /**
      * 删除
      *
@@ -61,7 +82,7 @@ public class ScheduleController {
      * @return
      */
     @RequestMapping(value = "/schedule/{id}", method = RequestMethod.DELETE)
-    public @ResponseBody int deleteRoleById(@PathVariable Integer id) {
+    public @ResponseBody int deleteById(@PathVariable Integer id) {
         return scheduleService.deleteById(id);
     }
 }

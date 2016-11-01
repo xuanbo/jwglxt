@@ -1,10 +1,13 @@
 package f4.web.config;
 
+import f4.web.security.MyUserDetailsService;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  * Web Security
@@ -17,9 +20,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user").password("user").roles("user").and()
-                .withUser("admin").password("admin").roles("user", "admin");
+//        auth.inMemoryAuthentication()
+//                .withUser("user").password("user").roles("user").and()
+//                .withUser("admin").password("admin").roles("user", "admin");
+        auth.userDetailsService(userDetailsService());
     }
 
     @Override
@@ -52,6 +56,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .permitAll()
                 .and()
+            .exceptionHandling().accessDeniedPage("/403.html").and()
             .headers().frameOptions().disable();// 允许iframe嵌套
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return new MyUserDetailsService();
     }
 }

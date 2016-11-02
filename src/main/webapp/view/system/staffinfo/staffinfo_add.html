@@ -222,68 +222,69 @@
   </div>
 </form>
 <script>
-  $(function () {
-    //初始化日期插件
-    $(".input-hireTime,.input-birthday").datetimepicker({
-      language:'zh-CN',
-      weekStart: 1,
-      todayBtn:  1,
-      autoclose: 1,
-      todayHighlight: 1,
-      startView: 2,
-      minView: 2,
-      forceParse: 0,
-      format: "yyyy/mm/dd"
-    });
-    //添加员工
-    $(".btn-save").on("click", function () {
-      var name = $(".input-name").val();
-      var sex = $(".input-age option:selected").val();
-      var age = $(".input-age").val();
-      var phone = $(".input-phone").val();
-      var qq = $(".input-qq").val();
-      var hireTime = $(".input-hireTime").val();
-      var province =$(".input-province").val();
-      var idcard = $(".input-idcard").val();
-      var birthday = $(".input-birthday").val();
-      var tel = $(".input-tel").val();
-      var email = $(".input-email").val();
-      var address = $(".input-address").val();
-      var education = $(".input-education option:selected").text();
-      var remark = $(".input-remark").val();
-      var username = $(".input-username").val();
-      var password = $(".input-password").val();
-      $.ajax({
-        url:'/staff',
-        method:'POST',
-        data:JSON.stringify({
-          name:name,
-          sex:sex,
-          age:age,
-          phone:phone,
-          qq:qq,
-          hireTime:hireTime,
-          province:province,
-          idcard:idcard,
-          roleId:1,
-          birthday:birthday,
-          tel:tel,
-          email:email,
-          address:address,
-          education:education,
-          remark:remark,
-          username:username,
-          password:password
-        }),
-        dataType:'html',
-        contentType:'application/json',
-        success:function(data){
-          console.log(data);
-        }
-      })
-    });
+    $(function () {
+      //初始化日期插件
+      $(".input-hireTime,.input-birthday").datetimepicker({
+        language: 'zh-CN',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0,
+        format: "yyyy-mm-dd"
+      });
+      //添加员工
+      $(".btn-save").on("click", function (e) {
+        e.preventDefault();
+        var name = $(".input-name").val();
+        var sex = $(".input-age option:selected").val();
+        var age = $(".input-age").val();
+        var phone = $(".input-phone").val();
+        var qq = $(".input-qq").val();
+        var hireTime = $(".input-hireTime").val();
+        var province = $(".input-province").val();
+        var idcard = $(".input-idcard").val();
+        var birthday = $(".input-birthday").val();
+        var tel = $(".input-tel").val();
+        var email = $(".input-email").val();
+        var address = $(".input-address").val();
+        var education = $(".input-education option:selected").text();
+        var remark = $(".input-remark").val();
+        var username = $(".input-username").val();
+        var password = $(".input-password").val();
+        $.ajax({
+          url: '/staff',
+          method: 'POST',
+          data: JSON.stringify({
+            name: name,
+            sex: sex,
+            age: age,
+            phone: phone,
+            qq: qq,
+            hireTime: hireTime,
+            province: province,
+            idcard: idcard,
+            roleId: 1,
+            birthday: birthday,
+            tel: tel,
+            email: email,
+            address: address,
+            education: education,
+            remark: remark,
+            username: username,
+            password: password
+          }),
+          dataType: 'html',
+          contentType: 'application/json',
+          success: function (data) {
+            console.log(data);
+          }
+        })
+      });
 
-  });
-</script>
+    });
+  </script>
 </body>
 </html>

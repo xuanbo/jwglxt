@@ -145,8 +145,8 @@ INSERT INTO `dictionary` VALUES ('3', '健康', '健康', '幸福安康');
 DROP TABLE IF EXISTS `email`;
 CREATE TABLE `email` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `from` varchar(50) NOT NULL,
-  `to` varchar(50) NOT NULL,
+  `send` varchar(50) NOT NULL,
+  `receive` varchar(50) NOT NULL,
   `time` date NOT NULL,
   `receive_address` varchar(50) NOT NULL,
   `title` varchar(50) NOT NULL,
@@ -217,9 +217,9 @@ INSERT INTO `menu` VALUES ('13', '4', '乒乓球', '', 'http://www.baidu.com', '
 DROP TABLE IF EXISTS `message`;
 CREATE TABLE `message` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `from` varchar(50) NOT NULL,
+  `send` varchar(50) NOT NULL,
   `time` date NOT NULL,
-  `to` varchar(50) NOT NULL,
+  `receive` varchar(50) NOT NULL,
   `phone` varchar(11) NOT NULL,
   `content` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)

@@ -103,4 +103,20 @@ public class StaffController {
     public @ResponseBody int deleteById(@PathVariable Integer id) {
         return staffService.deleteById(id);
     }
+
+    /**
+     * 角色变更
+     *
+     * @param staffId
+     * @param roleId
+     * @return
+     */
+    @RequestMapping(value = "/staff/{staffId}/role/{roleId}", method = RequestMethod.PUT)
+    public @ResponseBody int update(@PathVariable Integer staffId, @PathVariable Integer roleId) {
+        Staff staff = new Staff();
+        staff.setId(staffId);
+        Staff staffP = staffService.selectOne(staff);
+        staffP.setRoleId(roleId);
+        return staffService.update(staffP);
+    }
 }

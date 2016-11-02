@@ -1,5 +1,6 @@
 package f4.web.config;
 
+import f4.web.security.LoginAuthenticationSuccessHandler;
 import f4.web.security.MyUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 /**
  * Web Security
@@ -46,6 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login.html")
                 .usernameParameter("username")
                 .passwordParameter("password")
+                .successHandler(loginAuthenticationSuccessHandler())
                 .failureForwardUrl("/login.html?error")
                 .permitAll()
                 .and()
@@ -61,7 +64,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
+    public AuthenticationSuccessHandler loginAuthenticationSuccessHandler() {
+        return new LoginAuthenticationSuccessHandler();
+    }
+
+    @Bean
     public UserDetailsService userDetailsService() {
         return new MyUserDetailsService();
     }
+
 }

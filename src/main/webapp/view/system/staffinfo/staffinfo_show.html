@@ -28,7 +28,7 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">编号</label>
         <div class="col-sm-9">
-          <p class="form-control-static" th:text="${staff.id}">10001</p>
+          <p class="form-control-static staff-id" th:text="${staff.id}">10001</p>
         </div>
       </div>
 
@@ -57,8 +57,10 @@
     <div class="col-sm-5">
       <div class="form-group">
         <label class="col-sm-3 control-label">性别</label>
-        <div class="col-sm-4">
-          <p class="form-control-static" th:text="${staff.sex}">男</p>
+        <div class="col-sm-4" th:switch="${staff.sex}">
+          <p class="form-control-static" th:case="0">男</p>
+          <p class="form-control-static" th:case="1">女</p>
+          <p class="form-control-static" th:case="2">保密</p>
         </div>
       </div>
     </div>
@@ -91,7 +93,7 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">出生日期</label>
         <div class="col-sm-9">
-          <p class="form-control-static" th:text="${staff.birthday}">2001-01-01</p>
+          <p class="form-control-static" th:text="${#dates.format(staff.birthday, 'yyyy-MM-dd')}">2001-01-01</p>
         </div>
       </div>
 
@@ -154,7 +156,7 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">入职时间</label>
         <div class="col-sm-9">
-          <p class="form-control-static" th:text="${staff.hireTime}">2014-10-29 24:41:12</p>
+          <p class="form-control-static" th:text="${#dates.format(staff.hireTime, 'yyyy-MM-dd')}">2014-10-29 24:41:12</p>
         </div>
       </div>
 
@@ -205,13 +207,31 @@
   </div>
   <div class="row">
     <div class="col-sm-5 col-sm-offset-4">
-      <a href="staffinfo_update.html" class="btn btn-success">修改</a>
-      <input type="reset" class="btn  btn-danger" value="删除"/>
-      <input type="reset" class="btn btn-warning" value="返回上一级"/>
+      <a th:href="'/staff/'+ ${staff.id}+'/update'" class="btn btn-success">修改</a>
+      <input type="button" class="btn btn-danger btn-delete" data-id="" value="删除"/>
+      <input type="button" class="btn btn-warning" value="返回上一级"/>
     </div>
   </div>
 </form>
 <script>
+  //返回上一级
+  $(".btn-warning").on("click", function () {
+    history.go(-1);
+  });
+
+  //删除员工
+  $(".btn-delete").on("click", function (e) {
+    e.preventDefault();
+    var id = $(".staff-id").text();
+    $.ajax({
+      url:'/staff/'+id,
+      method:'DELETE',
+      success:function(data){
+        console.log(data);
+        location.reload();
+      }
+    });
+  });
 </script>
 </body>
 </html>

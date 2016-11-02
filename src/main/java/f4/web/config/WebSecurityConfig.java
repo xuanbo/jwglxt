@@ -1,8 +1,10 @@
 package f4.web.config;
 
+import f4.web.security.MyAuthenticationProvider;
 import f4.web.security.MyUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -23,7 +25,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        auth.inMemoryAuthentication()
 //                .withUser("user").password("user").roles("user").and()
 //                .withUser("admin").password("admin").roles("user", "admin");
-        auth.userDetailsService(userDetailsService());
+//        auth.userDetailsService(userDetailsService());
+        auth.authenticationProvider(authenticationProvider());
     }
 
     @Override
@@ -63,5 +66,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public UserDetailsService userDetailsService() {
         return new MyUserDetailsService();
+    }
+
+    @Bean
+    public AuthenticationProvider authenticationProvider() {
+        return new MyAuthenticationProvider();
     }
 }

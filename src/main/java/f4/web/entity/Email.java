@@ -12,7 +12,7 @@ public class Email implements Serializable {
     private Integer id;
 
     @Column
-    private String form;
+    private String from;
 
     @Column
     private String to;
@@ -37,12 +37,12 @@ public class Email implements Serializable {
         this.id = id;
     }
 
-    public String getForm() {
-        return form;
+    public String getFrom() {
+        return from;
     }
 
-    public void setForm(String form) {
-        this.form = form == null ? null : form.trim();
+    public void setFrom(String from) {
+        this.from = from == null ? null : from.trim();
     }
 
     public String getTo() {

@@ -22,10 +22,10 @@ public class MenuDaoTest {
     @Autowired
     private MenuDao menuDao;
 
-    @Test
-    public void selectAll() {
-        menuDao.selectAll().forEach(menu -> log.debug(menu));
-    }
+//    @Test
+//    public void selectAll() {
+//        menuDao.selectAll().forEach(menu -> log.debug(menu));
+//    }
 
     public void insert() {
         Menu menu = new Menu();

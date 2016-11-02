@@ -30,8 +30,24 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userDao.getByUsername(username);
-        Role role = roleDao.selectByPrimaryKey(user.getRoleId());
+        User user;
+        try {
+            user = userDao.getByUsername(username);
+        } catch (Exception e) {
+            throw new UsernameNotFoundException("user select fail.");
+        }
+        if (user == null) {
+            throw new UsernameNotFoundException("no user found.");
+        }
+        Role role;
+        try {
+            role = roleDao.selectByPrimaryKey(user.getRoleId());
+        } catch (Exception e) {
+            throw new UsernameNotFoundException("user role select fail.");
+        }
+        if (role == null) {
+            throw new UsernameNotFoundException("user have no role.");
+        }
         return new MyUserDetails(user, getAuthorities(role));
     }
 

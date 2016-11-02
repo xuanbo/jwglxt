@@ -60,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
             .exceptionHandling().accessDeniedPage("/403.html").and()
-            .headers().frameOptions().disable();// 允许iframe嵌套
+            .headers().frameOptions().disable(); // 允许iframe嵌套
     }
 
     @Bean

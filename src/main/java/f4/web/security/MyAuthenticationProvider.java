@@ -23,11 +23,11 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
     private UserDetailsService userDetailsService;
 
     @Override
-    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+    public Authentication authenticate(final Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
         String password = (String) authentication.getCredentials();
         MyUserDetails userDetails = (MyUserDetails) userDetailsService.loadUserByUsername(username);
-        if(userDetails == null){
+        if (userDetails == null) {
             throw new BadCredentialsException("Username not found.");
         }
         //加密过程在这里体现
@@ -39,7 +39,7 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
     }
 
     @Override
-    public boolean supports(Class<?> aClass) {
+    public boolean supports(final Class<?> aClass) {
         return true;
     }
 }

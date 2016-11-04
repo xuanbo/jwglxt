@@ -3,6 +3,7 @@ package f4.web.entity;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -20,6 +21,9 @@ public class Communication implements Serializable {
 
     @Column
     private String content;
+
+    @Transient
+    private Student student;
 
     public Integer getId() {
         return id;
@@ -51,5 +55,13 @@ public class Communication implements Serializable {
 
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 }

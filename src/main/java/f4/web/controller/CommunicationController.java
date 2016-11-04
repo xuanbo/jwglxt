@@ -2,8 +2,10 @@ package f4.web.controller;
 
 import java.util.List;
 
+import f4.web.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,8 @@ public class CommunicationController {
 	@Autowired
     private CommunicationService communicationService;
 
+    @Autowired
+    private StudentService studentService;
 
 	/**
 	 * 查询所有记录
@@ -27,7 +31,7 @@ public class CommunicationController {
 	 */
 	@RequestMapping(value = "/communications", method = RequestMethod.GET)
 	public @ResponseBody List<Communication> selectAll() {
-		return communicationService.selectAll();
+		return communicationService.getAllCommunication();
 	}
 
     /**
@@ -42,6 +46,35 @@ public class CommunicationController {
     	communication.setId(id);
         return communicationService.selectOne(communication);
     }
+
+    /**
+     * add Page
+     *
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value =  "/communication/add", method = RequestMethod.GET)
+    public String add(ModelMap modelMap) {
+        modelMap.addAttribute("students", studentService.selectAll());
+        return "student/communicateinfo/communicateinfo_add";
+    }
+
+    /**
+     * update Page
+     *
+     * @param id
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "/communication/{id}/update", method = RequestMethod.GET)
+    public String update(@PathVariable Integer id, ModelMap modelMap) {
+        Communication communication = new Communication();
+        communication.setId(id);
+        modelMap.addAttribute("communication", communicationService.selectOne(communication));
+        modelMap.addAttribute("students", studentService.selectAll());
+        return "student/communicateinfo/communicateinfo_update";
+    }
+
     
     /**
      * 查询记录

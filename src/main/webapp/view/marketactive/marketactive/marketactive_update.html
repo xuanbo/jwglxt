@@ -1,155 +1,220 @@
 <!doctype html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>首页</title>
-<!-- 新 Bootstrap 核心 CSS 文件 -->
-<link rel="stylesheet" href="../../../css/bootstrap.min.css">
-<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="../../../js/jquery.min.js"></script>
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="../../../js/bootstrap.min.js"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>首页</title>
+  <!-- 新 Bootstrap 核心 CSS 文件 -->
+  <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../../css/bootstrap-datetimepicker.css">
+  <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+  <script src="../../../js/jquery.min.js"></script>
+  <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+  <script src="../../../js/bootstrap.min.js"></script>
+  <script src="../../../js/bootstrap-datetimepicker.js"></script>
+  <script src="../../../js/bootstrap-datetimepicker.zh-CN.js"></script>
 </head>
 
 <body>
 <div style="padding:0px; margin:0px;">
- <ul class="breadcrumb" style="  margin:0px; " >
-    	<li><a href="#">营销管理</a></li>
-        <li>营销活动</li>
-        <li>修改活动</li>
-    </ul>
+  <ul class="breadcrumb" style="  margin:0px; ">
+    <li><a href="#">营销管理</a></li>
+    <li>营销活动</li>
+    <li>修改活动</li>
+  </ul>
 </div>
 
 <form action="" class="form-horizontal">
-    <h5 class="page-header alert-info" style="padding:10px; margin:0px; margin-bottom:5px;">基本信息</h5>
-	<div class="row">
-    	<div class="col-sm-5">
-        	<div class="form-group">
-            	<label class="col-sm-3 control-label">编号</label>
-                <div class="col-sm-9">
-                	<input type="text" name="" class="form-control input-sm" placeholder="请输入编号"/>
-                </div>
-            </div>
+  <h5 class="page-header alert-info" style="padding:10px; margin:0px; margin-bottom:5px;">基本信息</h5>
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">编号</label>
+        <div class="col-sm-9">
+          <input type="text" name="" disabled th:value="${sellactivity.id}" class="form-control input-sm input-id"
+                 placeholder="请输入编号"/>
         </div>
-        <div class="col-sm-5">
-            <div class="form-group">
-            	<label class="col-sm-3 control-label">活动名称</label>
-                <div class="col-sm-9">
-                	<input type="text" name="" class="form-control input-sm" placeholder="请输入活动名称"/>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-    	<!--开始 -->
-    	<div class="row">
-    	<div class="col-sm-5">
-        	<div class="form-group">
-            	<label class="col-sm-3 control-label">开始时间</label>
-                <div class="col-sm-9">
-                	<input type="text" name="" class="form-control input-sm" placeholder="请输入开始时间"/>
-                </div>
-            </div>
+    <div class="col-sm-5">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">活动名称</label>
+        <div class="col-sm-9">
+          <input type="text" name="" th:value="${sellactivity.name}" class="form-control input-sm input-name"
+                 placeholder="请输入活动名称"/>
         </div>
-        <div class="col-sm-5">
-            <div class="form-group">
-            	<label class="col-sm-3 control-label">活动状态</label>
-                <div class="col-sm-5">
-                	<select name="" class="form-control input-sm">
-                    	<option>准备中</option>
-                        <option>开始</option>
-                        <option>进行中</option>
-                    </select>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-   <!--结束 -->
-       	<!--开始 -->
-    	<div class="row">
-    	<div class="col-sm-5">
-        	<div class="form-group">
-            	<label class="col-sm-3 control-label">结束时间</label>
-                <div class="col-sm-9">
-                	<input type="text" name="" class="form-control input-sm" placeholder="请输入结束时间"/>
-                </div>
-            </div>
+  </div>
+  <!--开始 -->
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">开始时间</label>
+        <div class="col-sm-9">
+          <input type="text" name="" class="form-control input-sm input-startTime"
+                 th:value="${#dates.format(sellactivity.startTime, 'yyyy-MM-dd')}" placeholder="请输入开始时间"/>
         </div>
-        <div class="col-sm-5">
-            <div class="form-group">
-            	<label class="col-sm-3 control-label">活动类型</label>
-                <div class="col-sm-5">
-                	<select name="" class="form-control input-sm">
-                    	<option>现场交流</option>
-                        <option>会议</option>
-                        <option>其他</option>
-                    </select>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-   <!--结束 -->
-    <!--开始 -->
-    	<div class="row">
-    	<div class="col-sm-5">
-        	<div class="form-group">
-            	<label class="col-sm-3 control-label">成本预算</label>
-                <div class="col-sm-6">
-                	<input type="text" name="" class="form-control input-sm" placeholder="请输入成本预算"/>
-                </div>
-            </div>
-        </div>
+    <div class="col-sm-5">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">活动状态</label>
         <div class="col-sm-5">
-            <div class="form-group">
-            	<label class="col-sm-3 control-label">实际成本</label>
-                <div class="col-sm-6">
-                	<input type="text" name="" class="form-control input-sm" placeholder="请输入实际成本"/>
-                </div>
-            </div>
+          <select name="" class="form-control input-sm input-state">
+            <option th:selected="(${sellactivity.state} == '开始')">开始</option>
+            <option th:selected="(${sellactivity.state} == '准备中')">准备中</option>
+            <option th:selected="(${sellactivity.state} == '进行中')">进行中</option>
+          </select>
         </div>
+      </div>
     </div>
-   <!--结束 -->
-   <!--开始 -->
-    	<div class="row">
-    	<div class="col-sm-5">
-        	<div class="form-group">
-            	<label class="col-sm-3 control-label">预期反应</label>
-                <div class="col-sm-6">
-                	<input type="text" name="" class="form-control input-sm" placeholder="请输入预期反应"/>
-                </div>
-            </div>
+  </div>
+  <!--结束 -->
+  <!--开始 -->
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">结束时间</label>
+        <div class="col-sm-9">
+          <input type="text" name="" class="form-control input-sm input-endTime"
+                 th:value="${#dates.format(sellactivity.endTime, 'yyyy-MM-dd')}" placeholder="请输入结束时间"/>
         </div>
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">活动类型</label>
         <div class="col-sm-5">
-            <div class="form-group">
-            	<label class="col-sm-3 control-label">预期学员</label>
-                <div class="col-sm-6">
-                	<input type="text" name="" class="form-control input-sm" placeholder="请输入预期学员"/>
-                </div>
-            </div>
+          <select name="" class="form-control input-sm input-type">
+            <option th:selected="(${sellactivity.type} == '现场交流')">现场交流</option>
+            <option th:selected="(${sellactivity.type} == '会议')">会议</option>
+            <option th:selected="(${sellactivity.type} == '其他')">其他</option>
+          </select>
         </div>
+      </div>
     </div>
-   <!--结束 -->
-    <h5 class="page-header alert-info" style="padding:10px; margin:0px; margin-bottom:5px;">描述信息</h5>
-    	<div class="row">
-    	<div class="col-sm-10">
-        	<div class="form-group">
-            	<label class="col-sm-3 control-label">描述信息</label>
-                <div class="col-sm-9">
-                	<textarea class="form-control"></textarea>
-                </div>
-            </div>
-        
+  </div>
+  <!--结束 -->
+  <!--开始 -->
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">成本预算</label>
+        <div class="col-sm-6">
+          <input type="text" name="" th:value="${sellactivity.budgetCost}"
+                 class="form-control input-sm input-budgetCost" placeholder="请输入成本预算"/>
         </div>
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">实际成本</label>
+        <div class="col-sm-6">
+          <input type="text" name="" th:value="${sellactivity.actualCost}"
+                 class="form-control input-sm input-actualCost" placeholder="请输入实际成本"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--结束 -->
+  <!--开始 -->
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">预期反应</label>
+        <div class="col-sm-6">
+          <input type="text" name="" th:value="${sellactivity.reaction}" class="form-control input-sm input-reaction"
+                 placeholder="请输入预期反应"/>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">预期学员</label>
+        <div class="col-sm-6">
+          <input type="text" th:value="${sellactivity.expectStudentNum}" name=""
+                 class="form-control input-sm input-expectStudentNum" placeholder="请输入预期学员"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--结束 -->
+  <h5 class="page-header alert-info" style="padding:10px; margin:0px; margin-bottom:5px;">描述信息</h5>
+  <div class="row">
+    <div class="col-sm-10">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">描述信息</label>
+        <div class="col-sm-9">
+          <textarea th:text="${sellactivity.description}" class="form-control input-description"></textarea>
+        </div>
+      </div>
 
     </div>
- 
-   	<div class="row">
-    	<div class="col-sm-3 col-sm-offset-4">
-        	<input  type="submit" class="btn btn-success" value="保存"/>
-            <a class="btn btn-warning" href="marketactive_list.html">返回上一级</a>
-        </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3 col-sm-offset-4">
+      <input type="submit" class="btn btn-success btn-save" value="保存"/>
+      <a class="btn btn-warning" href="javascript:history.go(-1);">返回上一级</a>
     </div>
+  </div>
 </form>
+<script>
+  //初始化日期插件
+  $(".input-startTime,.input-endTime").datetimepicker({
+    language: 'zh-CN',
+    weekStart: 1,
+    todayBtn: 1,
+    autoclose: 1,
+    todayHighlight: 1,
+    startView: 2,
+    minView: 2,
+    forceParse: 0,
+    format: "yyyy-mm-dd"
+  });
 
+  updateActivity();
+  function updateActivity() {
+    $(".btn-save").on("click", function (e) {
+      e.preventDefault();
+      var id = $(".input-id").val();
+      var name = $(".input-name").val();
+      var startTime = $(".input-startTime").val();
+      var state = $(".input-state option:selected").text();
+      var endTime = $(".input-endTime").val();
+      var type = $(".input-type option:selected").text();
+      var budgetCost = $(".input-budgetCost").val();
+      var actualCost = $(".input-actualCost").val();
+      var reaction = $(".input-reaction").val();
+      var expectStudentNum = $(".input-expectStudentNum").val();
+      var description = $(".input-description").text();
+      $.ajax({
+        url: '/sellactivity',
+        method: 'PUT',
+        data: JSON.stringify({
+          id: id,
+          name: name,
+          startTime: startTime,
+          state: state,
+          endTime: endTime,
+          type: type,
+          budgetCost: budgetCost,
+          actualCost: actualCost,
+          reaction: reaction,
+          expectStudentNum: expectStudentNum,
+          description: description
+        }),
+        dataType: 'html',
+        contentType: 'application/json',
+        success: function (data) {
+          console.log(data);
+          location.reload();
+        }
+      });
+    });
+  }
+</script>
 </body>
 </html>

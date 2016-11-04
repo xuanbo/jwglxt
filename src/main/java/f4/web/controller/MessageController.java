@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +43,22 @@ public class MessageController {
     	message.setId(id);
         return messageService.selectOne(message);
     }
+
+    /**
+     * show Page
+     *
+     * @param id
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "/message/{id}/show", method = RequestMethod.GET)
+    public String show(@PathVariable Integer id, ModelMap modelMap) {
+        Message message = new Message();
+        message.setId(id);
+        modelMap.addAttribute("message", messageService.selectOne(message));
+        return "marketactive/messafeinfo/messafeinfo_show";
+    }
+
 
     /**
      * message send Page

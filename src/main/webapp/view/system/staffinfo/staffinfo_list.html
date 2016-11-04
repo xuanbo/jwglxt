@@ -55,7 +55,7 @@
   $(function () {
     showAllStaff();
     findStaff();
-    function showAllStaff(){
+    function showAllStaff() {
       //展示所有员工信息列表
       var urlAll = '/staffs';
       var htmlAll = '';
@@ -71,21 +71,22 @@
             } else {
               val.sex = '保密';
             }
-            htmlAll += '<tr class="staff-tr"><td><a href=' + "/staff/" + val.id + "/show"+'>' + val.id + '</a></td>' +
+            htmlAll += '<tr class="staff-tr"><td><a href=' + "/staff/" + val.id + "/show" + '>' + val.id + '</a></td>' +
                 '<td>' + val.name + '</td>' +
                 '<td>' + val.sex + '</td>' +
                 '<td>' + val.age + '</td>' +
                 '<td>' + val.phone + '</td>' +
                 '<td>' + val.qq + '</td>' +
                 '<td>' + new Date(val.hireTime).toLocaleDateString() + '</td>' +
-                '<td><a href=' + "/staff/" + val.id + "/update"+'>修改</a><a href="javascript:void(0);" onclick="deleteStaff('+val.id+')" data-id="'+val.id+'" class="btn-delete">删除</a></td>';
+                '<td><a href=' + "/staff/" + val.id + "/update" + '>修改</a><a href="javascript:void(0);" onclick="deleteStaff(' + val.id + ')" data-id="' + val.id + '" class="btn-delete">删除</a></td>';
           });
 
           $(".table-tr").after(htmlAll);
         }
       });
     }
-    function findStaff(){
+
+    function findStaff() {
       //查询员工信息
       $(".btn-find").on("click", function () {
         var type = $(".input-term option:selected").val();
@@ -102,11 +103,11 @@
     }
   });
   //删除员工
-  function deleteStaff(id){
+  function deleteStaff(id) {
     $.ajax({
-      url:'/staff/'+id,
-      method:'DELETE',
-      success:function(data){
+      url: '/staff/' + id,
+      method: 'DELETE',
+      success: function (data) {
         console.log(data);
         location.reload();
       }

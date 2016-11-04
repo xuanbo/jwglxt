@@ -2,8 +2,10 @@ package f4.web.controller;
 
 import java.util.List;
 
+import f4.web.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,14 +21,17 @@ public class AuditionController {
 	@Autowired
     private AuditionService auditionService;
 
+    @Autowired
+    private StudentService studentService;
+
 	/**
 	 * 查询所有记录
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(value = "/auditions", method = RequestMethod.GET)
 	public @ResponseBody List<Audition> selectAll() {
-		return auditionService.selectAll();
+		return auditionService.getAllAuditionWithStudent();
 	}
 
     /**
@@ -41,10 +46,38 @@ public class AuditionController {
     	audition.setId(id);
         return auditionService.selectOne(audition);
     }
-    
+
+    /**
+     * add Page
+     *
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "/audition/add", method = RequestMethod.GET)
+    public String add(ModelMap modelMap) {
+        modelMap.addAttribute("students", studentService.selectAll());
+        return "recruitstudent/auditioninfo/auditioninfo_add";
+    }
+
+    /**
+     * update Page
+     *
+     * @param id
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "/audition/{id}/update", method = RequestMethod.GET)
+    public String update(@PathVariable Integer id, ModelMap modelMap) {
+        Audition audition = new Audition();
+        audition.setId(id);
+        modelMap.addAttribute("students", studentService.selectAll());
+        modelMap.addAttribute("audition", auditionService.selectOne(audition));
+        return "recruitstudent/auditioninfo/auditioninfo_update";
+    }
+
     /**
      * 查询记录
-     * 
+     *
      * @param audition
      * @return
      */

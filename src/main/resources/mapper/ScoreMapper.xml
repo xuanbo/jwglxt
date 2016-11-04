@@ -12,8 +12,29 @@
         <result column="content" property="content" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <resultMap id="ScoreResultMap" type="score" extends="BaseResultMap">
+        <association property="student" javaType="student">
+            <id column="s_id" property="id" jdbcType="INTEGER" />
+            <result column="s_name" property="name" jdbcType="VARCHAR" />
+        </association>
+    </resultMap>
+
     <sql id="Base_Column_List">
         id, student_id, lesson_name, score, time, content
     </sql>
+
+    <select id="getAllScore" resultMap="ScoreResultMap">
+        select
+        sc.id as id,
+        sc.student_id as student_id,
+        sc.lesson_name as lesson_name,
+        sc.score as score,
+        sc.time as time,
+        sc.content as content,
+        s.id as s_id,
+        s.name as s_name
+        from score sc
+        join student s on sc.student_id = s.id
+    </select>
 
 </mapper>

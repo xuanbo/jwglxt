@@ -12,8 +12,58 @@
         <result column="content" property="content" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <resultMap id="TraceWithStudentResultMap" type="trace" extends="BaseResultMap">
+        <association property="student" javaType="student">
+            <id column="s_id" property="id" jdbcType="INTEGER"/>
+            <result column="s_name" property="name" jdbcType="VARCHAR"/>
+            <result column="s_sex" property="sex" jdbcType="TINYINT"/>
+            <result column="s_age" property="age" jdbcType="INTEGER"/>
+            <result column="s_phone" property="phone" jdbcType="VARCHAR"/>
+            <result column="s_email" property="email" jdbcType="VARCHAR"/>
+            <result column="s_idcard" property="idcard" jdbcType="VARCHAR"/>
+            <result column="s_address" property="address" jdbcType="VARCHAR"/>
+            <result column="s_birthday" property="birthday" jdbcType="DATE"/>
+            <result column="s_school" property="school" jdbcType="VARCHAR"/>
+            <result column="s_qq" property="qq" jdbcType="VARCHAR"/>
+            <result column="s_parent_name" property="parentName" jdbcType="VARCHAR"/>
+            <result column="s_province" property="province" jdbcType="VARCHAR"/>
+            <result column="s_city" property="city" jdbcType="VARCHAR"/>
+            <result column="s_status" property="status" jdbcType="VARCHAR"/>
+            <result column="s_description" property="description" jdbcType="VARCHAR"/>
+            <result column="s_parent_phone" property="parentPhone" jdbcType="VARCHAR"/>
+        </association>
+    </resultMap>
+
     <sql id="Base_Column_List">
         id, title, student_id, time, next_time, content
     </sql>
+
+    <select id="getAllTraceWithStudent" resultMap="TraceWithStudentResultMap">
+        select
+        t.id as id,
+        t.title as title,
+        t.student_id as student_id,
+        t.time as time,
+        t.next_time as next_time,
+        t.content as content,
+        s.id as s_id,
+        s.name as s_name,
+        s.sex as s_sex,
+        s.age as s_age,
+        s.phone as s_phone,
+        s.email as s_email,
+        s.idcard as s_idcard,
+        s.address as s_address,
+        s.birthday as s_birthday,
+        s.school as s_school,
+        s.qq as s_qq,
+        s.parent_name as s_parent_name,
+        s.province as s_province,
+        s.city as s_city,
+        s.status as s_status,
+        s.description as s_description,
+        s.parent_phone as s_parent_phone
+        from trace t join student s on t.student_id = s.id
+    </select>
 
 </mapper>

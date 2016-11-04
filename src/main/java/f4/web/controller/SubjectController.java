@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +41,21 @@ public class SubjectController {
     	Subject subject = new Subject();
     	subject.setId(id);
         return subjectService.selectOne(subject);
+    }
+
+    /**
+     * update Page
+     *
+     * @param id
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "/subject/{id}/update", method = RequestMethod.GET)
+    public String update(@PathVariable Integer id, ModelMap modelMap) {
+        Subject subject = new Subject();
+        subject.setId(id);
+        modelMap.addAttribute("subject", subjectService.selectOne(subject));
+        return "classinfo/disciplineinfo/disciplineinfo_update";
     }
     
     /**

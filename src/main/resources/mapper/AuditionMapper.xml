@@ -12,8 +12,57 @@
         <result column="desecration" property="desecration" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <resultMap id="AuditionWithStudent" type="audition" extends="BaseResultMap">
+        <association property="student" javaType="student">
+            <id column="s_id" property="id" jdbcType="INTEGER"/>
+            <result column="s_name" property="name" jdbcType="VARCHAR"/>
+            <result column="s_sex" property="sex" jdbcType="TINYINT"/>
+            <result column="s_age" property="age" jdbcType="INTEGER"/>
+            <result column="s_phone" property="phone" jdbcType="VARCHAR"/>
+            <result column="s_email" property="email" jdbcType="VARCHAR"/>
+            <result column="s_idcard" property="idcard" jdbcType="VARCHAR"/>
+            <result column="s_address" property="address" jdbcType="VARCHAR"/>
+            <result column="s_birthday" property="birthday" jdbcType="DATE"/>
+            <result column="s_school" property="school" jdbcType="VARCHAR"/>
+            <result column="s_qq" property="qq" jdbcType="VARCHAR"/>
+            <result column="s_parent_name" property="parentName" jdbcType="VARCHAR"/>
+            <result column="s_province" property="province" jdbcType="VARCHAR"/>
+            <result column="s_city" property="city" jdbcType="VARCHAR"/>
+            <result column="s_status" property="status" jdbcType="VARCHAR"/>
+            <result column="s_description" property="description" jdbcType="VARCHAR"/>
+            <result column="s_parent_phone" property="parentPhone" jdbcType="VARCHAR"/>
+        </association>
+    </resultMap>
+
     <sql id="Base_Column_List">
         id, lesson, student_id, time, address, desecration
     </sql>
 
+    <select id="getAllAuditionWithStudent" resultMap="AuditionWithStudent">
+        select
+        a.id as id,
+        a.lesson as lesson,
+        a.student_id as student_id,
+        a.time as time,
+        a.address as address,
+        a.desecration as desecration,
+        s.id as s_id,
+        s.name as s_name,
+        s.sex as s_sex,
+        s.age as s_age,
+        s.phone as s_phone,
+        s.email as s_email,
+        s.idcard as s_idcard,
+        s.address as s_address,
+        s.birthday as s_birthday,
+        s.school as s_school,
+        s.qq as s_qq,
+        s.parent_name as s_parent_name,
+        s.province as s_province,
+        s.city as s_city,
+        s.status as s_status,
+        s.description as s_description,
+        s.parent_phone as s_parent_phone
+        from audition a join student s on a.student_id = s.id
+    </select>
 </mapper>

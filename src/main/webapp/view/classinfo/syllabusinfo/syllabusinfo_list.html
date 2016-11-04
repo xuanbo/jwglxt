@@ -1,101 +1,105 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>首页</title>
-<!-- 新 Bootstrap 核心 CSS 文件 -->
-<link rel="stylesheet" href="../../../css/bootstrap.min.css">
-<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="../../../js/jquery.min.js"></script>
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="../../../js/bootstrap.min.js"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>首页</title>
+  <!-- 新 Bootstrap 核心 CSS 文件 -->
+  <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+  <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+  <script src="../../../js/jquery.min.js"></script>
+  <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+  <script src="../../../js/bootstrap.min.js"></script>
 </head>
 
 <body>
 <div style="padding:0px; margin:0px;">
- <ul class="breadcrumb" style="  margin:0px; " >
-    	<li><a href="#">班级管理</a></li>
-        <li>课程表</li>
-    </ul>
+  <ul class="breadcrumb" style="  margin:0px; ">
+    <li><a href="#">班级管理</a></li>
+    <li>课程表</li>
+  </ul>
 </div>
 <form class="form-inline">
-<div class="row alert alert-info"  style="margin:0px; padding:3px;" >
+  <div class="row alert alert-info" style="margin:0px; padding:3px;">
 
-     <div class="form-group">
-         <label class="" for="activename">课程表名称：</label>
-        <input type="email" class="form-control" id="activename" placeholder="请输入课程表名称">
-      </div>
+    <div class="form-group">
+      <label class="" for="activename">课程表名称：</label>
+      <input type="email" class="form-control input-find" id="activename" placeholder="请输入课程表名称">
+    </div>
 
-    <input type="button"   class="btn btn-danger"     value="查询"/>
-    <a  class="btn btn-success"  href="syllabusinfo_add.html">添加课程表</a>
-    
-</div>
-<div class="row" style="padding:15px; padding-top:0px; ">
-	<table class="table  table-condensed table-striped">
-    	<tr>
-        	<th>编号</th>
-            <th>课程表名称</th>
-            <th>星期一</th>
-            <th>星期二</th>
-            <th>星期三</th>
-            <th>星期三</th>
-            <th>星期四</th>
-            <th>星期五</th>
-            <th>星期六</th>
-            <th>星期天</th>
-            <th>操作</th>
-        </tr>
-       	<tr>
-        	<td>1001</td>
-            <td>java课程表</td>
-            <td>上午上课</td>
-            <td>下午上课</td>
-            <td>上午上课</td>
-            <td>下午上课</td>
-            <td>上午上课</td>
-            <td>下午上课</td>
-               <td>下午上课</td>
-            <td>上午上课</td>
-            <th>
-            <a href="syllabusinfo_update.html">修改</a> 
-            <a href="">删除</a>
-            </th>
-        </tr>   
-       	<tr>
-        	<td>1001</td>
-            <td>java课程表</td>
-            <td>上午上课</td>
-            <td>下午上课</td>
-            <td>上午上课</td>
-            <td>下午上课</td>
-            <td>上午上课</td>
-               <td>下午上课</td>
-            <td>下午上课</td>
-            <td>上午上课</td>
-            <th>
-            <a href="syllabusinfo_update.html">修改</a> 
-            <a href="">删除</a>
-            </th>
-        </tr>         	<tr>
-        	<td>1001</td>
-            <td>java课程表</td>
-            <td>上午上课</td>
-            <td>下午上课</td>
-            <td>上午上课</td>
-            <td>下午上课</td>
-          	<td>下午上课</td>     
-            <td>上午上课</td>
-            <td>下午上课</td>
-            <td>上午上课</td>
-            <th>
-            <a href="syllabusinfo_update.html">修改</a> 
-            <a href="">删除</a>
-            </th>
-        </tr>               
-     	                   
+    <input type="button" class="btn btn-danger btn-find" value="查询"/>
+    <a class="btn btn-success" href="syllabusinfo_add.html">添加课程表</a>
+
+  </div>
+  <div class="row" style="padding:15px; padding-top:0px; ">
+    <table class="table  table-condensed table-striped">
+      <tr class="table-tr">
+        <th>编号</th>
+        <th>课程表名称</th>
+        <th>星期一</th>
+        <th>星期二</th>
+        <th>星期三</th>
+        <th>星期四</th>
+        <th>星期五</th>
+        <th>星期六</th>
+        <th>星期天</th>
+        <th>操作</th>
+      </tr>
     </table>
-</div>
+  </div>
 </form>
+<script>
+  showStu();
+  function showStu() {
+    //展示所有角色信息
+    var url = '/schedules';
+    var html = '';
+    $.ajax({
+      url: url,
+      method: 'GET',
+      success: function (data) {
+        $.each(data, function (key, val) {
+          html += '<tr class="classroom-tr"><td>' + val.id + '</td>' +
+              '<td>' + val.name + '</td>' +
+              '<td>' + val.monday + '</td>' +
+              '<td>' + val.tuesday + '</td>' +
+              '<td>' + val.wednesday + '</td>' +
+              '<td>' + val.thursday + '</td>' +
+              '<td>' + val.friday + '</td>' +
+              '<td>' + val.saturday + '</td>' +
+              '<td>' + val.sunday + '</td>' +
+              '<th><a href=' + "/schedule/" + val.id + "/update" + '>修改</a> <a  href="javascript:void(0);" onclick="deleteSubject(' + val.id + ')" data-id="' + val.id + '" class="btn-delete">删除</a></th></tr>  ';
+        });
+        $(".table-tr").after(html);
+      }
+    });
+  }
+
+  findStu();
+  function findStu() {
+    //查询员工信息
+    $(".btn-find").on("click", function () {
+      var findText = $(".input-find").val();
+      for (var i = 0; i < $(".classroom-tr").length; i++) {
+        $(".classroom-tr").eq(i).show();
+        if (!$(".classroom-tr").eq(i).find("td").eq(1).is(":contains(" + findText + ")")) {
+          $(".classroom-tr").eq(i).hide();
+        } else {
+          $(".classroom-tr").eq(i).show();
+        }
+      }
+    });
+  }
+  function deleteSubject(id) {
+    $.ajax({
+      url: '/schedule/' + id,
+      method: 'DELETE',
+      success: function (data) {
+        console.log(data);
+        location.reload();
+      }
+    });
+  }
+</script>
 </body>
 </html>

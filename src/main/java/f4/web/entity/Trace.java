@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@Table(name = "Trace")
+@Table(name = "trace")
 public class Trace implements Serializable {
 
     @Id
@@ -25,6 +25,9 @@ public class Trace implements Serializable {
 
     @Column
     private String content;
+
+    @Transient
+    private Student student;
 
     public Integer getId() {
         return id;
@@ -72,5 +75,13 @@ public class Trace implements Serializable {
 
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 }

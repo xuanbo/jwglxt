@@ -1,106 +1,153 @@
 <!doctype html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>首页</title>
-<!-- 新 Bootstrap 核心 CSS 文件 -->
-<link rel="stylesheet" href="../../../css/bootstrap.min.css">
-<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="../../../js/jquery.min.js"></script>
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="../../../js/bootstrap.min.js"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>首页</title>
+  <!-- 新 Bootstrap 核心 CSS 文件 -->
+  <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../../css/bootstrap-datetimepicker.css">
+  <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+  <script src="../../../js/jquery.min.js"></script>
+  <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+  <script src="../../../js/bootstrap.min.js"></script>
+  <script src="../../../js/bootstrap-datetimepicker.js"></script>
+  <script src="../../../js/bootstrap-datetimepicker.zh-CN.js"></script>
 </head>
 
 <body>
 <div style="padding:0px; margin:0px;">
- <ul class="breadcrumb" style="  margin:0px; " >
-    	<li><a href="#">招生管理</a></li>
-         <li>试听记录</li>
-         <li>修改记录</li>
-    </ul>
+  <ul class="breadcrumb" style="  margin:0px; ">
+    <li><a href="#">招生管理</a></li>
+    <li>试听记录</li>
+    <li>修改记录</li>
+  </ul>
 </div>
 
 <form action="" class="form-horizontal">
 
-    <h5 class="page-header alert-info" style="padding:10px; margin:0px; margin-bottom:5px;">基本信息</h5>
-	<div class="row">
-    	<div class="col-sm-5">
-        	<div class="form-group">
-            	<label class="col-sm-3 control-label">编号</label>
-                <div class="col-sm-9">
-                	<input type="text" name="" class="form-control input-sm" placeholder="请输入编号"/>
-                </div>
-            </div>
-        
+  <h5 class="page-header alert-info" style="padding:10px; margin:0px; margin-bottom:5px;">基本信息</h5>
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">编号</label>
+        <div class="col-sm-9">
+          <input type="text" name="" class="form-control input-sm input-id" disabled th:value="${audition.id}" placeholder="请输入编号"/>
         </div>
-        <div class="col-sm-5">
-            <div class="form-group">
-            	<label class="col-sm-3 control-label">试听课程</label>
-                <div class="col-sm-9">
-                	<input type="text" name="" class="form-control input-sm" placeholder="请输入试听课程"/>
-                </div>
-            </div>
-        </div>
+      </div>
 
     </div>
-    	<div class="row">
-    	<div class="col-sm-5">
-        	<div class="form-group">
-            	<label class="col-sm-3 control-label">试听学员</label>
-                <div class="col-sm-9">
-                	<select name="" class="form-control input-sm">
-                    	<option value="1">张三</option>
-                   	    <option value="2">李四</option>
-                    </select>
-                </div>
-            </div>
+    <div class="col-sm-5">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">试听课程</label>
+        <div class="col-sm-9">
+          <input type="text" name="" class="form-control input-sm input-lesson" th:value="${audition.lesson}" placeholder="请输入试听课程"/>
         </div>
-    	<div class="col-sm-5">
-        	<div class="form-group">
-            	<label class="col-sm-3 control-label">试听时间</label>
-                <div class="col-sm-9">
-               		 <input type="text" name="" class="form-control input-sm" placeholder="请输入试听时间"/>
-                </div>
-            </div>
-        
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">试听学员</label>
+        <div class="col-sm-9">
+          <select name="" class="form-control input-sm input-studentId">
+            <option th:each="student : ${students}" th:text="${student.name}" th:selected="(${audition.studentId} == ${student.id})" th:value="${student.id}">张三</option>
+          </select>
         </div>
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">试听时间</label>
+        <div class="col-sm-9">
+          <input type="text" name="" class="form-control input-sm input-time" th:value="${#dates.format(audition.time, 'yyyy-MM-dd')}"  placeholder="请输入试听时间"/>
+        </div>
+      </div>
 
     </div>
-       	<div class="row">
-    	<div class="col-sm-5">
-        	<div class="form-group">
-            	<label class="col-sm-3 control-label">试听地点</label>
-                <div class="col-sm-9">
-               		 <input type="text" name="" class="form-control input-sm" placeholder="请输入试听地点"/>
-                </div>
-            </div>
-        
+
+  </div>
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">试听地点</label>
+        <div class="col-sm-9">
+          <input type="text" name="" class="form-control input-sm input-address" th:value="${audition.address}" placeholder="请输入试听地点"/>
         </div>
+      </div>
 
     </div>
-    <h5 class="page-header alert-info" style="padding:10px; margin:0px; margin-bottom:5px;">描述</h5>
-    	<div class="row">
-    	<div class="col-sm-10">
-        	<div class="form-group">
-            	<label class="col-sm-3 control-label">描述</label>
-                <div class="col-sm-9">
-                	<textarea class="form-control"></textarea>
-                </div>
-            </div>
-        
+
+  </div>
+  <h5 class="page-header alert-info" style="padding:10px; margin:0px; margin-bottom:5px;">描述</h5>
+  <div class="row">
+    <div class="col-sm-10">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">描述</label>
+        <div class="col-sm-9">
+          <textarea class="form-control input-desecration" th:text="${audition.desecration}"></textarea>
         </div>
+      </div>
 
     </div>
- 
-   	<div class="row">
-    	<div class="col-sm-3 col-sm-offset-4">
-        	<input  type="submit" class="btn btn-success" value="保存"/>
 
-              <a class="btn btn-warning" href="auditioninfo_list.html">返回上一级</a>
-        </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3 col-sm-offset-4">
+      <input type="submit" class="btn btn-success btn-save" value="保存"/>
+
+      <a class="btn btn-warning" href="javascript:history.go(-1);">返回上一级</a>
     </div>
+  </div>
 </form>
+<script>
+  //初始化日期插件
+  $(".input-time").datetimepicker({
+    language: 'zh-CN',
+    weekStart: 1,
+    todayBtn: 1,
+    autoclose: 1,
+    todayHighlight: 1,
+    startView: 2,
+    minView: 2,
+    forceParse: 0,
+    format: "yyyy-mm-dd"
+  });
 
+  updateAtu();
+
+  function updateAtu(){
+    //更新学生
+    $(".btn-save").on("click", function (e) {
+      e.preventDefault();
+      var id = $(".input-id").val();
+      var lesson = $(".input-lesson").val();
+      var studentId = $(".input-studentId option:selected").val();
+      var time = $(".input-time").val();
+      var address = $(".input-address").val();
+      var desecration = $(".input-desecration").val();
+      $.ajax({
+        url: '/audition',
+        method: 'PUT',
+        data: JSON.stringify({
+          id: id,
+          lesson:lesson,
+          time:time,
+          address:address,
+          desecration:desecration,
+          studentId:studentId
+        }),
+        dataType: 'html',
+        contentType: 'application/json',
+        success: function (data) {
+          console.log(data);
+          location.reload();
+        }
+      });
+    });
+  }
+</script>
 </body>
 </html>

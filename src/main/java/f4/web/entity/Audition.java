@@ -26,6 +26,9 @@ public class Audition implements Serializable {
     @Column
     private String desecration;
 
+    @Transient
+    private Student student;
+
     public Integer getId() {
         return id;
     }
@@ -72,5 +75,13 @@ public class Audition implements Serializable {
 
     public void setDesecration(String desecration) {
         this.desecration = desecration == null ? null : desecration.trim();
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 }

@@ -23,9 +23,9 @@
   <form class="form-horizontal">
     <div class="col-sm-2">电话号码:</div>
     <div class="col-sm-3">
-      <input type="text" class="form-control input-sm"/>
+      <input type="text" class="form-control input-sm input-find"/>
     </div>
-    <input type="button" class="btn btn-danger" value="查询"/>
+    <input type="button" class="btn btn-danger btn-find" value="查询"/>
     <a class="btn btn-success" href="/message/send">发送短信</a>
   </form>
 </div>
@@ -40,22 +40,14 @@
       <th>接收号码</th>
       <th>操作</th>
     </tr>
-    <tr>
-      <td>1001</td>
-      <td>张三</td>
-      <td>您好XXX，祝您生日快乐</td>
-      <td>2014-02-02</td>
-      <td>李四</td>
-      <td>900010101</td>
-      <th><a href="messafeinfo_show.html">查看</a> <a href="">删除</a></th>
-    </tr>
   </table>
 </div>
 <script>
 
   showAllMess();
+  findMessage();
   function showAllMess() {
-    //展示所有电信信息列表
+    //展示所有信息列表
     var urlAll = '/messages';
     var htmlAll = '';
     $.ajax({
@@ -70,10 +62,37 @@
               '<td>' + new Date(val.time).toLocaleDateString() + '</td>' +
               '<td>' + val.receive + '</td>' +
               '<td>' + val.phone + '</td>' +
-              '<td><a href=' + "/message/" + val.id + "/update" + '>修改</a><a href="javascript:void(0);" onclick="deleteTemplate(' + val.id + ')" data-id="' + val.id + '" class="btn-delete">删除</a></td>';
+              '<td><a href=' + "/message/" + val.id + "/show" + '>查看</a><a href="javascript:void(0);" onclick="deleteMessage(' + val.id + ')" data-id="' + val.id + '" class="btn-delete">删除</a></td>';
         });
 
         $(".table-tr").after(htmlAll);
+      }
+    });
+  }
+
+  //查找短信
+  function findMessage() {
+    $(".btn-find").on("click", function (e) {
+      e.preventDefault();
+      var findText = $(".input-find").val();
+      for (var i = 0; i < $(".message-tr").length; i++) {
+        $(".message-tr").eq(i).show();
+        if (!$(".message-tr").eq(i).find("td").eq(5).is(":contains(" + findText + ")")) {
+          $(".message-tr").eq(i).hide();
+        } else {
+          $(".message-tr").eq(i).show();
+        }
+      }
+    });
+  }
+  //删除短信
+  function deleteMessage(id) {
+    $.ajax({
+      url: '/message/' + id,
+      method: 'DELETE',
+      success: function (data) {
+        console.log(data);
+        location.reload();
       }
     });
   }

@@ -2,8 +2,11 @@ package f4.web.controller;
 
 import java.util.List;
 
+import f4.web.entity.Student;
+import f4.web.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,15 +21,19 @@ public class TraceController {
 
 	@Autowired
     private TraceService traceService;
+
+    @Autowired
+    private StudentService studentService;
 	
 	/**
 	 * 查询所有记录
+     * 关联查询学生
 	 * 
 	 * @return
 	 */
 	@RequestMapping(value = "/traces", method = RequestMethod.GET)
 	public @ResponseBody List<Trace> selectAll() {
-		return traceService.selectAll();
+		return traceService.getAllTraceWithStudent();
 	}
 
     /**
@@ -40,6 +47,34 @@ public class TraceController {
     	Trace trace = new Trace();
     	trace.setId(id);
         return traceService.selectOne(trace);
+    }
+
+    /**
+     * add Page
+     *
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "/trace/add", method = RequestMethod.GET)
+    public String add(ModelMap modelMap) {
+        modelMap.addAttribute("students", studentService.selectAll());
+        return "recruitstudent/trackrecord/trackrecord_add";
+    }
+
+    /**
+     * update Page
+     *
+     * @param id
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "/trace/{id}/update", method = RequestMethod.GET)
+    public String update(@PathVariable Integer id, ModelMap modelMap) {
+        Trace trace = new Trace();
+        trace.setId(id);
+        modelMap.addAttribute("trace", traceService.selectOne(trace));
+        modelMap.addAttribute("students", studentService.selectAll());
+        return "recruitstudent/trackrecord/trackrecord_update";
     }
     
     /**

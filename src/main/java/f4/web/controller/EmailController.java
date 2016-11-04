@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +43,32 @@ public class EmailController {
     	email.setId(id);
         return emailService.selectOne(email);
     }
+
+    /**
+     * send Page
+     *
+     * @return
+     */
+    @RequestMapping(value = "/email/send", method = RequestMethod.GET)
+    public String send() {
+        return "marketactive/emailinfo/emailinfo_send";
+    }
+
+    /**
+     * show Page
+     *
+     * @param id
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "/email/{id}/show", method = RequestMethod.GET)
+    public String show(@PathVariable Integer id, ModelMap modelMap) {
+        Email email = new Email();
+        email.setId(id);
+        modelMap.addAttribute("email", emailService.selectOne(email));
+        return "marketactive/emailinfo/emailinfo_show";
+    }
+
     
     /**
      * 查询记录

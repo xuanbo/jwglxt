@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,6 +42,21 @@ public class EvaluateController {
     	Evaluate evaluate = new Evaluate();
     	evaluate.setId(id);
         return evaluateService.selectOne(evaluate);
+    }
+
+    /**
+     * update Page
+     *
+     * @param id
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "/evaluate/{id}/update", method = RequestMethod.GET)
+    public String update(@PathVariable Integer id, ModelMap modelMap) {
+        Evaluate evaluate = new Evaluate();
+        evaluate.setId(id);
+        modelMap.addAttribute("evaluate", evaluateService.selectOne(evaluate));
+        return "student/evaluationinfo/evaluationinfo_update";
     }
     
     /**

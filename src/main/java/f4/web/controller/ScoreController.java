@@ -2,8 +2,10 @@ package f4.web.controller;
 
 import java.util.List;
 
+import f4.web.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,8 @@ public class ScoreController {
 	@Autowired
     private ScoreService scoreService;
 
+    @Autowired
+    private StudentService studentService;
 
 	/**
 	 * 查询所有记录
@@ -27,7 +31,7 @@ public class ScoreController {
 	 */
 	@RequestMapping(value = "/scores", method = RequestMethod.GET)
 	public @ResponseBody List<Score> selectAll() {
-		return scoreService.selectAll();
+		return scoreService.getAllScore();
 	}
 
     /**
@@ -41,6 +45,34 @@ public class ScoreController {
     	Score score = new Score();
     	score.setId(id);
         return scoreService.selectOne(score);
+    }
+
+    /**
+     * add Page
+     *
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "/score/add", method = RequestMethod.GET)
+    public String add(ModelMap modelMap) {
+        modelMap.addAttribute("students", studentService.selectAll());
+        return "student/studentwritegrade/studentwritegrade_add";
+    }
+
+    /**
+     * update Page
+     *
+     * @param id
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "/score/{id}/update", method = RequestMethod.GET)
+    public String update(@PathVariable Integer id, ModelMap modelMap) {
+        Score score = new Score();
+        score.setId(id);
+        modelMap.addAttribute("score", scoreService.selectOne(score));
+        modelMap.addAttribute("students", studentService.selectAll());
+        return "student/studentwritegrade/studentwritegrade_update";
     }
     
     /**

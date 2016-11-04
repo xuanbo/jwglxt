@@ -44,9 +44,9 @@
   <div class="row">
     <div class="col-sm-5">
       <div class="form-group">
-        <label class="col-sm-3 control-label input-receive">接收人</label>
+        <label class="col-sm-3 control-label">接收人</label>
         <div class="col-sm-9">
-          <input type="text" name="" class="form-control input-sm" placeholder="请输入接收人"/>
+          <input type="text" name="" class="form-control input-sm input-receive" placeholder="请输入接收人"/>
         </div>
       </div>
     </div>
@@ -87,9 +87,9 @@
       <a class="btn btn-warning" href="javascript:history.go(-1);">返回上一级</a>
     </div>
   </div>
+  <input type="hidden" class="input-send" th:value="${session.USER.name}">
 </form>
 
-<input type="hidden" class="input-send" th:value="${session.USER.name}">
 
 <script>
   sendMessage();
@@ -98,8 +98,8 @@
       e.preventDefault();
       var receive = $('.input-receive').val();
       var phone = $('.input-phone').val();
-      var content = $(".input-content").text();
-      var send = $(".input-send").text();
+      var content = $(".input-content").val();
+      var send = $(".input-send").val();
       $.ajax({
         url:'/message',
         method:'POST',
@@ -107,7 +107,8 @@
           receive:receive,
           phone:phone,
           content:content,
-          send:send
+          send:send,
+          time:new Date()
         }),
         dataType:'html',
         contentType:'application/json',

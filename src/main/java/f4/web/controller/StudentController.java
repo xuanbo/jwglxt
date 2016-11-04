@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +41,39 @@ public class StudentController {
     	Student student = new Student();
     	student.setId(id);
         return studentService.selectOne(student);
+    }
+
+    /**
+     * student
+     * update Page
+     *
+     * @param id
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "/student/{id}/updatePage", method = RequestMethod.GET)
+    public String updatePage(@PathVariable Integer id, ModelMap modelMap) {
+        Student student = new Student();
+        student.setId(id);
+        modelMap.addAttribute("student", studentService.selectOne(student));
+        return "student/student/student_update";
+    }
+
+
+    /**
+     * student pool
+     * update Page
+     *
+     * @param id
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "/student/{id}/update", method = RequestMethod.GET)
+    public String update(@PathVariable Integer id, ModelMap modelMap) {
+        Student student = new Student();
+        student.setId(id);
+        modelMap.addAttribute("student", studentService.selectOne(student));
+        return "recruitstudent/studentpool/studentpool_update";
     }
     
     /**

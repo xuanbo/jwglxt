@@ -1,80 +1,106 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>首页</title>
-<!-- 新 Bootstrap 核心 CSS 文件 -->
-<link rel="stylesheet" href="../../../css/bootstrap.min.css">
-<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="../../../js/jquery.min.js"></script>
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="../../../js/bootstrap.min.js"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>首页</title>
+  <!-- 新 Bootstrap 核心 CSS 文件 -->
+  <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+  <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+  <script src="../../../js/jquery.min.js"></script>
+  <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+  <script src="../../../js/bootstrap.min.js"></script>
 </head>
 
 <body>
 <div style="padding:0px; margin:0px;">
- <ul class="breadcrumb" style="  margin:0px; " >
-    	<li><a href="#">营销管理</a></li>
-        <li>营销活动</li>
-    </ul>
+  <ul class="breadcrumb" style="  margin:0px; ">
+    <li><a href="#">营销管理</a></li>
+    <li>营销活动</li>
+  </ul>
 </div>
-<div class="row alert alert-info"  style="margin:0px; padding:3px;" >
-<form class="form-inline">
-     <div class="form-group">
-         <label class="" for="activename">活动名称：</label>
-        <input type="email" class="form-control" id="activename" placeholder="请输入活动名称">
-      </div>
-      <div class="form-group">
-         <label class="" for="activstate">活动状态：</label>
-		 <select  class="form-control" id="activstate">
-            <option>活动状态</option>
-         </select>	
-      </div>
-    <input type="button"   class="btn btn-danger"     value="查询"/>
-    <a  class="btn btn-success"  href="marketactive_add.html">添加活动</a>
-    </form>
+<div class="row alert alert-info" style="margin:0px; padding:3px;">
+  <form class="form-inline">
+    <div class="form-group">
+      <label class="" for="activename">活动名称：</label>
+      <input type="email" class="form-control input-find" id="activename" placeholder="请输入活动名称">
+    </div>
+    <div class="form-group">
+      <label class="" for="activstate">活动状态：</label>
+      <select class="form-control" id="activstate">
+        <option>开始</option>
+        <option>准备中</option>
+        <option>进行中</option>
+      </select>
+    </div>
+    <input type="button" class="btn btn-danger btn-find" value="查询"/>
+    <a class="btn btn-success" href="marketactive_add.html">添加活动</a>
+  </form>
 </div>
 <div class="row" style="padding:15px; padding-top:0px; ">
-	<table class="table  table-condensed table-striped">
-    	<tr>
-        	<th>编号</th>
-            <th>活动名称</th>
-            <th>负责人</th>
-            <th>开始时间</th>
-            <th>结束时间</th>
-            <th>活动状态</th>
-            <th>操作</th>
-        </tr>
-       	<tr>
-        	<td>1001</td>
-            <td>软件大赛</td>
-            <td>张三</td>
-            <td>2014-12-12 12:12:12</td>
-            <td>2014-12-22 12:12:12</td>
-            <td>准备中</td>
-            <th><a href="marketactive_update.html">修改</a> <a href="">删除</a></th>
-        </tr>
-        	<tr>
-        	<td>1001</td>
-            <td>软件大赛</td>
-            <td>张三</td>
-            <td>2014-12-12 12:12:12</td>
-            <td>2014-12-22 12:12:12</td>
-            <td>准备中</td>
-            <th><a href="marketactive_update.html">修改</a> <a href="">删除</a></th>
-        </tr>
-               	<tr>
-        	<td>1001</td>
-            <td>软件大赛</td>
-            <td>张三</td>
-            <td>2014-12-12 12:12:12</td>
-            <td>2014-12-22 12:12:12</td>
-            <td>准备中</td>
-            <th><a href="marketactive_update.html">修改</a> <a href="">删除</a></th>
-        </tr>                    
-    </table>
+  <table class="table  table-condensed table-striped">
+    <tr class="table-tr">
+      <th>编号</th>
+      <th>活动名称</th>
+      <th>开始时间</th>
+      <th>结束时间</th>
+      <th>活动状态</th>
+      <th>操作</th>
+    </tr>
+  </table>
 </div>
+<script>
+  showAllActive();
+  findActive();
+  function showAllActive() {
+    //展示所有模板信息列表
+    var urlAll = '/sellactivitys';
+    var htmlAll = '';
+    $.ajax({
+      url: urlAll,
+      method: 'GET',
+      success: function (data) {
+        $.each(data, function (key, val) {
+          htmlAll += '<tr class="sellactivity-tr"><td>' + val.id + '</td>' +
+              '<td>' + val.name + '</td>' +
+              '<td>' + new Date(val.startTime).toLocaleDateString() + '</td>' +
+              '<td>' + new Date(val.endTime).toLocaleDateString() + '</td>' +
+              '<td>' + val.state + '</td>' +
+              '<td><a href=' + "/sellactivity/" + val.id + "/update" + '>修改</a><a href="javascript:void(0);" onclick="deleteActivity(' + val.id + ')" data-id="' + val.id + '" class="btn-delete">删除</a></td>';
+        });
 
+        $(".table-tr").after(htmlAll);
+      }
+    });
+  }
+
+  function findActive(){
+    //查询员工信息
+    $(".btn-find").on("click", function () {
+      var type = $("#activstate option:selected").val();
+      var findText = $(".input-find").val();
+      for (var i = 0; i < $(".sellactivity-tr").length; i++) {
+        $(".sellactivity-tr").eq(i).show();
+        if (!$(".sellactivity-tr").eq(i).find("td").eq(1).is(":contains(" + findText + ")")||!$(".sellactivity-tr").eq(i).find("td").eq(4).is(":contains(" + type + ")")) {
+          $(".sellactivity-tr").eq(i).hide();
+        } else {
+          $(".sellactivity-tr").eq(i).show();
+        }
+      }
+    });
+  }
+
+  //删除模板
+  function deleteActivity(id) {
+    $.ajax({
+      url: '/sellactivity/' + id,
+      method: 'DELETE',
+      success: function (data) {
+        console.log(data);
+        location.reload();
+      }
+    });
+  }
+</script>
 </body>
 </html>

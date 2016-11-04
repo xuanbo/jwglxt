@@ -91,7 +91,7 @@ CREATE TABLE `clazz` (
   `teacher_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   `schedule_id` int(11) NOT NULL,
-  `clazz_id` int(11) NOT NULL,
+  `classroom_id` int(11) NOT NULL,
   `description` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;

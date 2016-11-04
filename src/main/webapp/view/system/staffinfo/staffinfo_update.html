@@ -30,7 +30,8 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">编号</label>
         <div class="col-sm-9">
-          <input th:value="${staff.id}" type="text" value="10001" name="" class="form-control input-sm input-id" disabled placeholder="请输入编号"/>
+          <input th:value="${staff.id}" type="text" value="10001" name="" class="form-control input-sm input-id"
+                 disabled placeholder="请输入编号"/>
         </div>
       </div>
 
@@ -39,7 +40,8 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">姓名</label>
         <div class="col-sm-9">
-          <input th:value="${staff.name}" type="text" value="张三" name="" class="form-control input-sm input-name" placeholder="请输入姓名"/>
+          <input th:value="${staff.name}" type="text" value="张三" name="" class="form-control input-sm input-name"
+                 placeholder="请输入姓名"/>
         </div>
       </div>
     </div>
@@ -51,7 +53,8 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">年龄</label>
         <div class="col-sm-5">
-          <input th:value="${staff.age}" type="text" value="18" name="" class="form-control input-sm input-age" placeholder="请输入年龄"/>
+          <input th:value="${staff.age}" type="text" value="18" name="" class="form-control input-sm input-age"
+                 placeholder="请输入年龄"/>
         </div>
       </div>
 
@@ -76,7 +79,8 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">籍贯</label>
         <div class="col-sm-6">
-          <input th:value="${staff.province}" type="text" name="" value="上海" class="input-province form-control input-sm" placeholder="请输入籍贯"/>
+          <input th:value="${staff.province}" type="text" name="" value="上海"
+                 class="input-province form-control input-sm" placeholder="请输入籍贯"/>
         </div>
       </div>
 
@@ -85,7 +89,8 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">身份证</label>
         <div class="col-sm-9">
-          <input th:value="${staff.idcard}" type="text" name="" value="5001231010xxxxxxxxx" class="input-idcard form-control input-sm" placeholder="请输入身份证号码"/>
+          <input th:value="${staff.idcard}" type="text" name="" value="5001231010xxxxxxxxx"
+                 class="input-idcard form-control input-sm" placeholder="请输入身份证号码"/>
         </div>
       </div>
     </div>
@@ -97,7 +102,8 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">出生日期</label>
         <div class="col-sm-9">
-          <input th:value="${#dates.format(staff.birthday, 'yyyy-MM-dd')}" type="text" name="" value="2001-01-01" class="input-birthday form-control input-sm" placeholder="请输入出生日期"/>
+          <input th:value="${#dates.format(staff.birthday, 'yyyy-MM-dd')}" type="text" name="" value="2001-01-01"
+                 class="input-birthday form-control input-sm" placeholder="请输入出生日期"/>
         </div>
       </div>
 
@@ -106,7 +112,8 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">办公电话</label>
         <div class="col-sm-9">
-          <input th:value="${staff.tel}" type="text" name="" value="0123-123131231-11" class="input-tel form-control input-sm" placeholder="请输入办公电话"/>
+          <input th:value="${staff.tel}" type="text" name="" value="0123-123131231-11"
+                 class="input-tel form-control input-sm" placeholder="请输入办公电话"/>
         </div>
       </div>
     </div>
@@ -118,7 +125,8 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">电子邮件</label>
         <div class="col-sm-9">
-          <input th:value="${staff.email}" type="text" name="" value="0xxxxxxx@qq.com" class="input-email form-control input-sm" placeholder="请输入电子邮件"/>
+          <input th:value="${staff.email}" type="text" name="" value="0xxxxxxx@qq.com"
+                 class="input-email form-control input-sm" placeholder="请输入电子邮件"/>
         </div>
       </div>
 
@@ -127,7 +135,8 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">移动电话</label>
         <div class="col-sm-9">
-          <input th:value="${staff.phone}" type="text" name="" value="14233993345" class="input-phone form-control input-sm" placeholder="请输入移动电话"/>
+          <input th:value="${staff.phone}" type="text" name="" value="14233993345"
+                 class="input-phone form-control input-sm" placeholder="请输入移动电话"/>
         </div>
       </div>
     </div>
@@ -139,7 +148,8 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">家庭住址</label>
         <div class="col-sm-9">
-          <input th:value="${staff.address}" type="text" name="" value="上海浦东新区xxx街xxx号" class="input-address form-control input-sm" placeholder="请输入家庭住址 "/>
+          <input th:value="${staff.address}" type="text" name="" value="上海浦东新区xxx街xxx号"
+                 class="input-address form-control input-sm" placeholder="请输入家庭住址 "/>
         </div>
       </div>
 
@@ -148,7 +158,8 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">QQ</label>
         <div class="col-sm-9">
-          <input th:value="${staff.qq}" type="text" name="" value="xxxxxxxxx" class="input-qq form-control input-sm" placeholder="请输入QQ"/>
+          <input th:value="${staff.qq}" type="text" name="" value="xxxxxxxxx" class="input-qq form-control input-sm"
+                 placeholder="请输入QQ"/>
         </div>
       </div>
     </div>
@@ -160,7 +171,8 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">入职时间</label>
         <div class="col-sm-9">
-          <input th:value="${#dates.format(staff.hireTime, 'yyyy-MM-dd')}" type="text" name="" value="2014-10-29 24:41:12" class="input-hireTime form-control input-sm" placeholder="请输入入职时间 "/>
+          <input th:value="${#dates.format(staff.hireTime, 'yyyy-MM-dd')}" type="text" name=""
+                 value="2014-10-29 24:41:12" class="input-hireTime form-control input-sm" placeholder="请输入入职时间 "/>
         </div>
       </div>
 
@@ -200,7 +212,8 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">账号</label>
         <div class="col-sm-9">
-          <input th:value="${staff.username}" type="text" name="" class="form-control input-sm input-username" placeholder="请输入账号 " value="admin"/>
+          <input th:value="${staff.username}" type="text" name="" class="form-control input-sm input-username"
+                 placeholder="请输入账号 " value="admin"/>
         </div>
       </div>
 
@@ -209,7 +222,8 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">密码</label>
         <div class="col-sm-9">
-          <input th:value="${staff.password}" type="password" name="" class="form-control input-sm input-password" value="admin123456" placeholder="请输入密码"/>
+          <input th:value="${staff.password}" type="password" name="" class="form-control input-sm input-password"
+                 value="admin123456" placeholder="请输入密码"/>
         </div>
       </div>
     </div>
@@ -224,9 +238,9 @@
 <script>
   //初始化日期插件
   $(".input-hireTime,.input-birthday").datetimepicker({
-    language:'zh-CN',
+    language: 'zh-CN',
     weekStart: 1,
-    todayBtn:  1,
+    todayBtn: 1,
     autoclose: 1,
     todayHighlight: 1,
     startView: 2,
@@ -244,7 +258,7 @@
     var phone = $(".input-phone").val();
     var qq = $(".input-qq").val();
     var hireTime = $(".input-hireTime").val();
-    var province =$(".input-province").val();
+    var province = $(".input-province").val();
     var idcard = $(".input-idcard").val();
     var birthday = $(".input-birthday").val();
     var tel = $(".input-tel").val();
@@ -255,31 +269,31 @@
     var username = $(".input-username").val();
     var password = $(".input-password").val();
     $.ajax({
-      url:'/staff',
-      method:'PUT',
-      data:JSON.stringify({
-        id:id,
-        name:name,
-        sex:sex,
-        age:age,
-        phone:phone,
-        qq:qq,
-        hireTime:hireTime,
-        province:province,
-        idcard:idcard,
-        roleId:1,
-        birthday:birthday,
-        tel:tel,
-        email:email,
-        address:address,
-        education:education,
-        remark:remark,
-        username:username,
-        password:password
+      url: '/staff',
+      method: 'PUT',
+      data: JSON.stringify({
+        id: id,
+        name: name,
+        sex: sex,
+        age: age,
+        phone: phone,
+        qq: qq,
+        hireTime: hireTime,
+        province: province,
+        idcard: idcard,
+        roleId: 1,
+        birthday: birthday,
+        tel: tel,
+        email: email,
+        address: address,
+        education: education,
+        remark: remark,
+        username: username,
+        password: password
       }),
-      dataType:'html',
-      contentType:'application/json',
-      success:function(data){
+      dataType: 'html',
+      contentType: 'application/json',
+      success: function (data) {
         console.log(data);
         location.reload();
       }

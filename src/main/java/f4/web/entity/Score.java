@@ -26,6 +26,9 @@ public class Score implements Serializable {
     @Column
     private String content;
 
+    @Transient
+    private Student student;
+
     public Integer getId() {
         return id;
     }

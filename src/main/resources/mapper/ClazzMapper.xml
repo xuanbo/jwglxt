@@ -12,13 +12,87 @@
         <result column="teacher_id" property="teacherId" jdbcType="INTEGER"/>
         <result column="subject_id" property="subjectId" jdbcType="INTEGER"/>
         <result column="schedule_id" property="scheduleId" jdbcType="INTEGER"/>
-        <result column="clazz_id" property="clazzId" jdbcType="INTEGER"/>
+        <result column="classroom_id" property="classroomId" jdbcType="INTEGER"/>
         <result column="description" property="description" jdbcType="VARCHAR"/>
+    </resultMap>
+    
+    <resultMap id="ClazzResultMap" type="clazz" extends="BaseResultMap">
+        <association property="teacher" javaType="teacher">
+            <id column="te_id" property="id" jdbcType="INTEGER" />
+            <result column="te_name" property="name" jdbcType="VARCHAR" />
+        </association>
+        <association property="subject" javaType="subject">
+            <id column="su_id" property="id" jdbcType="INTEGER" />
+            <result column="su_name" property="name" jdbcType="VARCHAR" />
+        </association>
+        <association property="schedule" javaType="schedule">
+            <id column="sc_id" property="id" jdbcType="INTEGER" />
+            <result column="sc_name" property="name" jdbcType="VARCHAR" />
+        </association>
+        <association property="classroom" javaType="classroom">
+            <id column="cl_id" property="id" jdbcType="INTEGER" />
+            <result column="cl_name" property="name" jdbcType="VARCHAR" />
+        </association>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, name, start_time, end_time, number, teacher_id, subject_id, schedule_id, clazz_id,
+        id, name, start_time, end_time, number, teacher_id, subject_id, schedule_id, classroom_id,
         description
     </sql>
+
+    <select id="getClazzAll" resultMap="ClazzResultMap">
+        select
+        cla.id as id,
+        cla.name as name,
+        cla.start_time as start_time,
+        cla.end_time as end_time,
+        cla.number as number,
+        cla.teacher_id as teacher_id,
+        cla.subject_id as subject_id,
+        cla.schedule_id as schedule_id,
+        cla.classroom_id as classroom_id,
+        cla.description as description,
+        te.id as te_id,
+        te.name as te_name,
+        su.id as su_id,
+        su.name as su_name,
+        sc.id as sc_id,
+        sc.name as sc_name,
+        cl.id as cl_id,
+        cl.name as cl_name
+        from clazz cla
+        join teacher te on cla.teacher_id = te.id
+        join subject su on cla.subject_id = su.id
+        join schedule sc on cla.schedule_id = sc.id
+        join classroom cl on cla.classroom_id = cl.id
+    </select>
+
+    <select id="getClazzById" resultMap="ClazzResultMap">
+        select
+        cla.id as id,
+        cla.name as name,
+        cla.start_time as start_time,
+        cla.end_time as end_time,
+        cla.number as number,
+        cla.teacher_id as teacher_id,
+        cla.subject_id as subject_id,
+        cla.schedule_id as schedule_id,
+        cla.classroom_id as classroom_id,
+        cla.description as description,
+        te.id as te_id,
+        te.name as te_name,
+        su.id as su_id,
+        su.name as su_name,
+        sc.id as sc_id,
+        sc.name as sc_name,
+        cl.id as cl_id,
+        cl.name as cl_name
+        from clazz cla
+        join teacher te on cla.teacher_id = te.id
+        join subject su on cla.subject_id = su.id
+        join schedule sc on cla.schedule_id = sc.id
+        join classroom cl on cla.classroom_id = cl.id
+        where cla.id = #{id}
+    </select>
 
 </mapper>

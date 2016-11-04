@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +41,36 @@ public class TeacherController {
     	Teacher teacher = new Teacher();
     	teacher.setId(id);
         return teacherService.selectOne(teacher);
+    }
+
+    /**
+     * show Page
+     *
+     * @param id
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "/teacher/{id}/show", method = RequestMethod.GET)
+    public String show(@PathVariable Integer id, ModelMap modelMap) {
+        Teacher teacher = new Teacher();
+        teacher.setId(id);
+        modelMap.addAttribute("teacher", teacherService.selectOne(teacher));
+        return "classinfo/teacher/teacher_show";
+    }
+
+    /**
+     * update Page
+     *
+     * @param id
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "/teacher/{id}/update", method = RequestMethod.GET)
+    public String update(@PathVariable Integer id, ModelMap modelMap) {
+        Teacher teacher = new Teacher();
+        teacher.setId(id);
+        modelMap.addAttribute("teacher", teacherService.selectOne(teacher));
+        return "classinfo/teacher/teacher_update";
     }
     
     /**

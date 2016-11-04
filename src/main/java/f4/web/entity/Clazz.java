@@ -33,10 +33,22 @@ public class Clazz implements Serializable {
     private Integer scheduleId;
 
     @Column
-    private Integer clazzId;
+    private Integer classroomId;
 
     @Column
     private String description;
+
+    @Transient
+    private Teacher teacher;
+
+    @Transient
+    private Subject subject;
+
+    @Transient
+    private Schedule schedule;
+
+    @Transient
+    private Classroom classroom;
 
     public Integer getId() {
         return id;
@@ -102,12 +114,12 @@ public class Clazz implements Serializable {
         this.scheduleId = scheduleId;
     }
 
-    public Integer getClazzId() {
-        return clazzId;
+    public Integer getClassroomId() {
+        return classroomId;
     }
 
-    public void setClazzId(Integer clazzId) {
-        this.clazzId = clazzId;
+    public void setClassroomId(Integer classroomId) {
+        this.classroomId = classroomId;
     }
 
     public String getDescription() {
@@ -116,5 +128,37 @@ public class Clazz implements Serializable {
 
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
+    }
+
+    public Classroom getClassroom() {
+        return classroom;
+    }
+
+    public void setClassroom(Classroom classroom) {
+        this.classroom = classroom;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 }
